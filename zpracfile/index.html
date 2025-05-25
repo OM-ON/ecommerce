@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <title>Magic Home</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-logo">
+          <img src="img/product/Magic.png" alt="MAGIC">
+        </div>
+        <div class="search-bar">
+          <input type="search" placeholder="Search...">
+          <span class="search-icon">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+        <ul class="nav-categories">
+          <li><a class="active" href="index.html">Home</a>
+          </li>
+
+          <li><a href="views/login.html">Login</a>
+          </li>
+          <li><a href="jewellery.html">jewellery</a>
+          </li>
+          <li><a  href="handbag.html">handbag</a>
+          </li>
+          <li><a href="sunglasses.html">sunglass</a></li>
+        </li>
+        <li><a href="perfume.html">perfume</a></li>
+        <!-- <li><a href="deal.html">deal</a></li> -->
+        </ul>
+        <div class="nav-account">
+        <a href="http://127.0.0.1:5500/Magic.html#">
+            <i class="far far fa-heart"></i>
+          </a>
+          <a href="http://127.0.0.1:5500/Magic.html#">
+            <i class="far fa-cart-plus"></i>
+          </a>
+        </div>
+      </nav>
+    <main>
+    </main>
+      <div class="slideshow-container">
+        <div class="mySlides">
+          <img src="img/product/temp1.jpg" style="width:100%">
+        </div>
+      
+        <div class="mySlides">
+          <img src="img/product/temp2.jpg" style="width:100%">
+        </div>
+      
+        <div class="mySlides">
+          <img src="img/product/temp3.jpg" style="width:100%">
+        </div>
+      
+        <div class="mySlides">
+          <img src="img/product/temp4.jpg" style="width:100%">
+        </div>
+      
+        <div style="text-align:center; margin-top: 10px;">
+          <span class="dot" onclick="currentSlide(0)"></span>
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+      </div>
+
+    <h2>Featured Product</h2>
+    <section>
+      <div id="product" class="product-container">
+        <!-- <div class="product-card">
+          <div class="image-container" onclick="showProduct('gold-diamond-ring')">
+              <img src="img/product/hring.jpg" alt="Image 1" class="product-image active">
+              <img src="img/product/vring.jpg" alt="Image 2" class="product-image">
+              <img src="img/product/mring.jpg" alt="Image 3" class="product-image">
+      
+          </div>
+          <div class="product-info">
+            <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <div class="rating">
+              <span>4.7 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+              <span class="current-price">₹4,999</span>
+              <span class="original-price">₹5,399</span>
+            </div>
+            <div class="product-name">
+              Exclusive  Ring
+              
+            </div>
+            <button class="buy-now">Buy Now</button>
+
+        </div>
+      </div> -->
+      
+      
+      <div class="product-card">
+          
+            <div class="image-container" onclick="showProduct('Vertical-Bifold-Wallet')">
+              <img src="img/product/wal1.jpg" alt="Image 1" class="product-image active">
+              <img src="img/product/wal2.jpg" alt="Image 2" class="product-image">
+
+          </div>
+          <div class="product-info">
+              <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+          </div>
+          <div class="rating">
+              <span>4.4 ★</span> <span>| 43</span>
+          </div>
+          <div class="price">
+              <span class="current-price">₹2,999</span>
+              <span class="original-price">₹4,399</span>
+          </div>
+          <div class="product-name">
+        Wallet 
+          </div>
+          <div class="btn">
+              <button class="buy-now">Buy Now</button>
+          </div>
+      </div>
+          
+          
+      <div class="product-card">
+          <div class="image-container">
+              <img src="img/product/of1.jpg" alt="Image 1" class="product-image active"onclick="showProduct('Gucci-GG0392O-eyeglasses')">
+              <img src="img/product/of2.jpg" alt="Image 2" class="product-image">
+              <img src="img/product/of3.jpg" alt="Image 3" class="product-image">
+          
+          </div>
+          <div class="product-info">
+              <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+          </div>
+          <div class="rating">
+              <span>4.3 ★</span> <span>| 43</span>
+          </div>
+          <div class="price">
+              <span class="current-price">₹2,999</span>
+              <span class="original-price">₹3,399</span>
+          </div>
+          <div class="product-name">
+         Goggles
+          </div>
+          <div class="btn">
+              <button class="buy-now">Buy Now</button>
+          </div>
+      </div> 
+
+      <div class="product-card">
+          <div class="image-container">
+              <img src="img/product/hbrac2.jpg" alt="Image 1" class="product-image active"onclick="showProduct('diamond-eternity-band')">
+              <img src="img/product/vbrac2.jpg" alt="Image 2" class="product-image">
+              <img src="img/product/mbrac2.jpg" alt="Image 3" class="product-image">
+          </div>
+          <div class="product-info">
+              <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+          </div>
+          <div class="rating">
+              <span>4.2 ★</span> <span>| 43</span>
+          </div>
+          <div class="price">
+              <span class="current-price">₹4,999</span>
+              <span class="original-price">₹6,000</span>
+          </div>
+          <div class="product-name">
+              Bracelet
+          </div>
+          <div class="btn">
+              <button class="buy-now">Buy Now</button>
+          </div>  
+      </div>
+
+      <div class="product-card">
+          <div class="image-container">
+              <img src="img/product/s1.jpg" alt="Image 1" class="product-image active"onclick="showProduct('Eclipse-Rectangular-Sunglasses')">
+              <img src="img/product/s2.jpg" alt="Image 2" class="product-image">
+              <img src="img/product/s3.jpg" alt="Image 3" class="product-image">
+          </div>
+          <div class="product-info">
+              <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+          </div>
+          <div class="rating">
+              <span>4.1 ★</span> <span>| 43</span>
+          </div>
+          <div class="price">
+              <span class="current-price">₹4,000</span>
+              <span class="original-price">₹7,000</span>
+          </div>
+          <div class="product-name">
+       Sunglasses
+          </div>
+          <div class="btn">
+              <button class="buy-now">Buy Now</button>
+          </div>
+      </div>
+
+      <div class="product-card">
+          <div class="image-container">
+              <img src="img/product/2hnc.jpg" alt="Image 1" class="product-image active"onclick="showProduct('necklace')">
+              <img src="img/product/2vnc.jpg" alt="Image 2" class="product-image">
+              <img src="img/product/2mnc.jpg" alt="Image 3" class="product-image">
+          </div>
+          <div class="product-info">
+              <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+          </div>
+          <div class="rating">
+              <span>4.8 ★</span> <span>| 43</span>
+          </div>
+          <div class="price">
+              <span class="current-price">₹4,999</span>
+              <span class="original-price">₹6,399</span>
+          </div>
+          <div class="product-name">
+              Necklace
+          </div>
+          <div class="btn">
+            <button class="buy-now">Buy Now</button>
+             
+          </div>
+      </div>
+      </div>
+      <div class="product-detail" id="gold-diamond-ring">
+        <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+        <img src="img/product/hring.jpg" alt="Gold Diamond Ring" />
+        <div class="product-title">Gold Diamond Ring</div>
+        <div class="product-price">₹2,099</div>
+        <div class="product-description">
+          <p>
+            This elegant gold diamond ring is perfect for special occasions or
+            everyday wear. Its timeless design adds a touch of luxury to any outfit.
+          </p>
+        </div>
+      </div>
+
+      <div class="product-detail" id="Vertical-Bifold-Wallet">
+        <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+        <img src="img/product/wal1.jpg" alt="Vertical Bifold Wallet"/>
+        <div class="product-title">Vertical Bifold Wallet</div>
+        <div class="product-price">₹2,099</div>
+        <div class="product-description">
+          <p>
+            description: Brand:
+            Christian Dior
+            Model: Vertical Bifold Wallet Gravity Leather and Smooth Black
+            Description: This wallet is made from black smooth calfskin with a Dior Oblique Jacquard motif lining. It features a billfold compartment, a zipped coin compartment, and eight card slots. The wallet has a silver-colored Dior signature log on the front.
+          </p>
+        </div>
+      </div>
+
+      <div class="product-detail" id="Gucci-GG0392O-eyeglasses">
+        <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+        <img src="img/product/of1.jpg" alt="Gucci-GG0392O-eyeglasses"/>
+        <div class="product-title">Gucci-GG0392O-eyeglasses</div>
+        <div class="product-price">₹2,099</div>
+        <div class="product-description">
+          <p>
+            description: These Gucci glasses feature a round metal frame for a classic look.
+
+            The silver color is versatile and can be paired with a variety of outfits.
+            
+            The glasses are likely made from a durable metal material, such as stainless steel or titanium.
+          </p>
+        </div>
+      </div>
+
+      <div class="product-detail" id="diamond-eternity-band">
+        <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+        <img src="img/product/hbrac2.jpg" alt="diamond-eternity-band"/>
+        <div class="product-title">diamond-eternity-band</div>
+        <div class="product-price">₹2,099</div>
+        <div class="product-description">
+          <p>
+            description: Style: Eternity band
+            Gemstone: Diamonds (round cut)
+            Metal: White gold or platinum
+          </p>
+        </div>
+      </div>
+
+      <div class="product-detail" id="Eclipse-Rectangular-Sunglasses">
+        <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+        <img src="img/product/s1.jpg" alt="Eclipse-Rectangular-Sunglasses"/>
+        <div class="product-title">Eclipse-Rectangular-Sunglasses</div>
+        <div class="product-price">₹2,099</div>
+        <div class="product-description">
+          <p>
+            The lenses are tinted dark, offering both privacy and protection from the sun’s rays, making them an ideal accessory for any occasion. 
+          </p>
+        </div>
+      </div>
+
+      <div class="product-detail" id="necklace">
+        <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+        <img src="img/product/2hnc.jpg" alt="necklace"/>
+        <div class="product-title">necklace</div>
+        <div class="product-price">₹2,099</div>
+        <div class="product-description">
+          <p>
+            The pendant is made of cubic zirconia, a type of synthetic diamond simulant. The necklace is made from rhodium-plated sterling silver.
+          </p>
+        </div>
+      </div>
+      
+    </section>
+
+
+    
+
+<footer class="footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="mailto:om64312@gmail.com">om64312@gmail.com</a></li>
+          <li><a href="tel:931812189">9313812189</a></li>
+          <li><a href="info.html">Info</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Consumer Policy</h4>
+        <ul>
+          <li><a href="terms of service.html">Terms of Services</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="#">Sitemap</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Keep in touch with Us</h4>
+        <ul class="fa-ul">
+
+          <li><a href="https://x.com/Soni13062004?t=M0_6NmR6ZCFP9s_RLxrP6A&s=09"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/om-soni-6425262a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-middle">
+      <div class="footer-col">
+        <h4>Let Us Help You</h4>
+        <ul>
+          <li><a href="hecu.html">Help & Customer Service</a></li>
+          <li><a href="return and refund.html">Returns & Refunds</a></li>
+          <li><a href="shipdel.html">Shipping & Delivery</a></li>
+          <li><a href="productrev.html">Product Reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More from Magic</h4>
+        <ul>
+          <li><a href="handbag.html">Magic handbags</a></li>
+          <li><a href="jewellery.html">Magic jewellery</a></li>
+          <li><a href="#">Magic Deals</a></li>
+          
+        </ul>
+        
+      </div>
+    </div>
+    <div class="footer-bottom">
+               &copy; 2025 Magic. All rights reserved.
+      <!-- <ul>
+        <li><a href="#">Conditions of Use</a></li>
+        <li><a href="#">Privacy Notice</a></li>
+        <li><a href="#">Interest-Based Ads</a></li>
+      </ul>
+      <ul> -->
+        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1945.266141366309!2d72.55942637506745!3d23.065999743625337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e837c6d87df95%3A0xeb17638171684a4e!2sNew%20Vandana%20Society%2C%208%2C%20Lane%2C%20Krushikunj%20Society%2C%20Nava%20Vadaj%2C%20Ahmedabad%2C%20Gujarat%20380013!5e0!3m2!1sen!2sin!4v1721281069007!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+      <!-- </ul> -->
+   
+  </footer>
+  
+<script src="css/index.js"></script>
+
+</body>
+</html>

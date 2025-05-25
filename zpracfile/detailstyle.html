@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <title>Magic Home</title>
+    <link rel="stylesheet" href="css/index.css">
+<head>
+  <style>
+            /* Navbar styling */
+           
+                .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Adjust based on navbar height */
+    z-index: 1000;
+}
+
+
+
+        .nav-categories a.active {
+  color: pink; /* or use a specific shade, e.g. #ff69b4 */
+  font-weight: bold; /* optional */
+}
+
+
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #fefaf5;
+}
+/* Reduce overall product section size */
+.product-contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px); /* Adjust height based on navbar */
+    padding: 0 15px; /* Remove extra padding */
+    gap: 20px;
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 0;
+    padding-top: 80px; /* /* Push it right below the navbar */
+}
+
+.product-page {
+    min-height: calc(100vh - 60px); /* 60px is the navbar height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Reduce image sizes */
+.product-gallery {
+    flex: 1;
+    padding: 10px; /* Reduce padding */
+}
+
+#main-image {
+    max-width: 300px; /* Reduce main image size */
+}
+
+.thumbnail {
+    width: 50px;
+    height: 50px;
+}
+
+/* Reduce product information section */
+.product-info {
+    flex: 1;
+    max-width: 400px;
+    padding: 10px; /* Reduce padding */
+}
+
+h1 {
+    font-size: 22px; /* Reduce title size */
+    margin-bottom: 5px;
+}
+
+.price {
+    font-size: 20px; /* Reduce price size */
+}
+
+.mrp {
+    font-size: 16px;
+}
+
+.rating {
+    font-size: 14px;
+}
+
+.desc {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-top: 5px;
+}
+
+/* Features */
+.product-features {
+    font-size: 14px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.product-features li {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.product-features i {
+    color: #28a745;
+}
+
+/* Delivery Check */
+.delivery-check {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.delivery-check input {
+    padding: 10px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.delivery-check button {
+    padding: 10px 15px;
+    background-color: #ff3f6c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.delivery-check button:hover {
+    background-color: #d62b52;
+}
+
+/* Action Buttons */
+/* Buttons Container */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Add to Cart Button */
+.add-to-cart {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #e66e89;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.add-to-cart:hover {
+    background-color: #d45973;
+}
+</style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-logo">
+      <img src="img/product/Magic.png" alt="MAGIC" />
+    </div>
+    <div class="search-bar">
+      <input type="search" placeholder="Search..." />
+      <span class="search-icon">
+        <i class="fas fa-search"></i>   
+      </span>
+    </div>
+    <ul class="nav-categories">
+      <li><a class="active" href="fix.html">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="nav.html">Jewellery</a></li>
+      <li><a  href="handbag.html">Handbag</a></li>
+      <li><a href="sunglasses.html">Sunglass</a></li>
+      <li><a  href="perfume.html">Perfume</a></li>
+      <!-- <li><a href="deal.html">Deal</a></li> -->
+    </ul>
+    <div class="nav-account">
+      <a href="#"><i class="far far fa-heart"></i></a>
+      <a href="#"><i class="far fa-cart-plus"></i></a>
+    </div>
+  </nav>
+  <div class="product-contain">
+    <!-- Product Image Gallery -->
+    <div class="product-gallery">
+        <img id="main-image" src="img/product/wal1.jpg" alt="Product">
+        <div class="thumbnail-container">
+            <img class="thumbnail" src="img/product/wal2.jpg" onclick="changeImage(this)">
+        </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-info">
+        <h1>Silver Leaf Set</h1>
+        <br>
+        <p class="price">₹3,499 <span class="mrp">₹6,199</span></p>
+        <p class="rating">⭐ 4.7 | 33 Reviews</p>
+        <br>
+        <p class="desc">description: Brand:
+Christian Dior
+Model: Vertical Bifold Wallet Gravity Leather and Smooth Black
+Description: This wallet is made from black smooth calfskin with a Dior Oblique Jacquard motif lining.</p>
+<br>      
+<ul class="product-features">
+            <li>✅ Easy 30-Day Return</li>
+            <li>✅ 6-Month Warranty</li>
+        </ul>
+
+  
+        <div class="btn">
+            <button class="buy-now">Buy Now</button>
+        </div>
+        <div class="action-buttons">
+        
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+  <script>
+  // Store the original image when the page loads
+let originalImage = document.getElementById("main-image").src;
+
+document.querySelector(".thumbnail-container").addEventListener("click", function(event) {
+    if (event.target.classList.contains("thumbnail")) {
+        let mainImage = document.getElementById("main-image");
+
+        // If the clicked image is already displayed, reset to the original image
+        if (mainImage.src === event.target.src) {
+            mainImage.src = originalImage;
+        } else {
+            mainImage.src = event.target.src;
+        }
+    }
+});
+</script>
+  </body>
+
+  </html>

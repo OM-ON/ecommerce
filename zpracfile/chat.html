@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Icon</title>
+    <style>
+        /* Chat Icon Styling */
+        #chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            text-align: center;
+        }
+
+        .chat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .chat-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            background: linear-gradient(45deg, #ff7eb3, #ff758c, #ff5e62);
+            box-shadow: 0px 4px 10px rgba(255, 94, 98, 0.4);
+            position: absolute;
+            bottom: 70px;
+            right: 0px;
+            white-space: nowrap;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Chat Box Styling */
+        .chat-box {
+            display: none; /* Initially hidden */
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+        }
+
+        .close-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Chat Icon -->
+    <div id="chat-container">
+        <div id="chat-icon">
+            <a href="chatbot.html" ><img src="img/chat.jpeg" alt="Chatbot Icon" class="chat-icon"></a>
+            <span id="chat-text" class="chat-text">May I help you?</span>
+        </div>
+    </div>
+
+    <!-- Chat Box -->
+    <div id="chat-box" class="chat-box">
+        <a href="chatbot.html" class="chat-link" target="_blank"></a>
+    </div>
+
+    <script>
+        document.getElementById("chat-icon").addEventListener("click", function() {
+            document.getElementById("chat-text").style.display = "none"; // Hide the text
+            document.getElementById("chat-box").style.display = "block"; // Show chatbot
+        });
+
+        function closeChat() {
+            document.getElementById("chat-box").style.display = "none"; // Hide chatbot
+            document.getElementById("chat-text").style.display = "inline-block"; // Show text again
+        }
+    </script>
+
+</body>
+</html>

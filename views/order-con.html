@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <title>Order Confirmation</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 80px;
+      background-color: #fff;
+      border-bottom: 2px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-logo img {
+      height: 50px;
+    }
+
+    .confirmation-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .confirmation-icon {
+      font-size: 60px;
+      color: #28a745;
+    }
+
+    .confirmation-container h2 {
+      color: #333;
+      margin-top: 20px;
+    }
+
+    .confirmation-container p {
+      font-size: 16px;
+      color: #555;
+      margin: 10px 0 20px;
+    }
+
+    .order-summary {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .order-summary h4 {
+      margin-bottom: 10px;
+    }
+
+    .order-summary ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .order-summary li {
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .home-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .home-btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-logo">
+      <img src="img/product/newlogo.png" alt="MAGIC"/>
+    </div>
+  </nav>
+
+  <div class="confirmation-container">
+    <div class="confirmation-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h2>Thank you for your order!</h2>
+    <p>Your order has been placed successfully.</p>
+
+    <div class="order-summary">
+      <h4>Order Summary</h4>
+      <ul id="order-details">
+        <li>Loading order details...</li>
+      </ul>
+    </div>
+
+    <a href="fix.html" class="home-btn"><i class="fas fa-home"></i> Continue Shopping</a>
+  </div>
+
+  <script>
+    // Extract order ID from query params, e.g. ?order_id=123456
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('order_id');
+
+    if (orderId) {
+      fetch(`/order/${orderId}`)
+        .then(res => res.json())
+        .then(data => {
+          const orderList = document.getElementById("order-details");
+          orderList.innerHTML = `
+            <li><strong>Order ID:</strong> #${data.order_id}</li>
+          
+            <li><strong>Email:</strong> ${data.email}</li>
+            <li><strong>Items:</strong> ${data.items}</li>
+            <li><strong>Total:</strong> ₹${data.total}</li>
+          `;
+        })
+        .catch(err => {
+          document.getElementById("order-details").innerHTML = `<li>Error fetching order details.</li>`;
+          console.error("Fetch error:", err);
+        });
+    } else {
+      document.getElementById("order-details").innerHTML = `<li>No order ID found in URL.</li>`;
+    }
+  </script>
+</body>
+</html>

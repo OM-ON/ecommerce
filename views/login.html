@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+ /* Reset Styles */
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Centering the Page */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Form Styling */
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            width: 360px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        /* Input Fields */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1.5px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        input:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 6px rgba(74, 144, 226, 0.3);
+        }
+
+        /* Password Field with Eye Icon */
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+            font-size: 18px;
+        }
+
+        .eye-icon:hover {
+            color: #555;
+        }
+
+        /* Button Styling */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: #357abd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .nav-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 10px 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a90e2;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+            color: #357abd;
+        }
+         /* Switch Link */
+         .switch-link {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .switch-link a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .switch-link a:hover {
+            text-decoration: underline;
+        }
+        /* Video Background */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+</style>
+</head>
+<body>
+<!-- Video Background -->
+<div class="video-background">
+    <video autoplay loop muted playsinline>
+        <source src="/21772981.mp4" type="video/mp4">
+    </video>
+</div>
+
+<form action="/login" method="POST">
+    <h1> login </h1>
+    <input type="text" name="username"
+        placeholder="email">
+        <div class="password-container">
+            <input type="password" id="password" name="password" placeholder="Password">
+            <i class="fas fa-eye eye-icon" id="togglePassword"></i>
+        </div>
+        <div class="switch-link">
+            Don't have an account? <a href="/register">Sign Up</a>
+        </div>   
+        <br>
+         
+    <button>login</button>
+</form>
+<Script>
+        document.querySelector("form").addEventListener("submit", function (event) {
+        let emailInput = document.querySelector("input[name='username']");
+        let passwordInput = document.getElementById("password");
+
+        // Allowed Email Domains
+        let allowedDomains = ["gmail.com"];
+
+        // Email Validation Pattern
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$/;
+        let passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+        let isValid = true;
+        let errorMessage = "";
+
+        // Email Validation
+        let emailValue = emailInput.value.trim();
+        let emailMatch = emailValue.match(emailPattern);
+        
+        if (!emailMatch) {
+            errorMessage += "⚠ Please enter a valid email.\n";
+            isValid = false;
+        } else {
+            let domain = emailMatch[1] + "." + emailMatch[2]; // Extract domain
+            if (!allowedDomains.includes(domain.toLowerCase())) {
+                errorMessage += `⚠ Only ${allowedDomains.join(", ")} are allowed.\n`;
+                isValid = false;
+            }
+        }
+
+        // Password Validation
+        if (!passwordPattern.test(passwordInput.value.trim())) {
+            errorMessage += "⚠ Password must be at least 6 characters long and include at least one number.\n";
+            isValid = false;
+        }
+
+        if (!isValid) {
+            alert(errorMessage);
+            event.preventDefault(); // Prevent form submission if validation fails
+        }
+    });
+
+        // Password visibility toggle
+        document.getElementById("togglePassword").addEventListener("click", function() {
+            let passwordInput = document.getElementById("password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                this.classList.remove("fa-eye");
+                this.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                this.classList.remove("fa-eye-slash");
+                this.classList.add("fa-eye");
+            }
+        });
+
+</Script>
+</body>
+</html>

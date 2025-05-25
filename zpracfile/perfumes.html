@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Magic Home</title>
+    <style>
+        /* Base Reset */
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .nav-categories a.active {
+  color: pink; /* or use a specific shade, e.g. #ff69b4 */
+  font-weight: bold; /* optional */
+}
+
+
+    /* Space for the navbar to prevent overlap */
+        .content {
+            padding-top: 0; /* Remove any space above */
+        }
+
+        /* Slideshow container with full height */
+        .slideshow-container {
+            width: 100%;
+            height: 90vh; /* Full viewport height */
+            position: relative;
+            margin: 0;
+            overflow: hidden;
+            border-radius: 0;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); */
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Prevent cutting of the image while maintaining aspect ratio */
+            display: block;
+        }
+
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .slideshow-container {
+                height: 60vh; /* Slightly smaller height for tablet-sized screens */
+            }
+
+            .dot {
+                height: 12px;
+                width: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slideshow-container {
+                height: 50vh; /* Smaller height for mobile screens */
+            }
+        }
+        
+        /* Chatbot Icon */
+        .chat-icon {
+          position: fixed;  
+    bottom: 20px;  
+    right: 20px;    
+    z-index: 9999;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    box-shadow: none; /* Remove shadow */
+}
+
+.chat-icon img {
+    width: 60px; /* Make sure the image takes full size */
+    height: auto;
+}
+
+        /* Chat Container */
+        .chat-container {
+            position: fixed;  
+    bottom: 20px;  
+    right: 20px;  
+    z-index: 9999; 
+            width: 350px;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: none; /* Initially hidden */
+        }
+
+        .chat-header {
+            background-color:darkgrey;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h1 {
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .chat-box {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            height: 300px;
+            background-color: #f9f9f9;
+        }
+
+        .chat-message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 20px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .bot-message {
+            text-align: left;
+        }
+
+        .user-message {
+            text-align: right;
+        }
+
+        .input-container {
+            display: flex;
+            padding: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            background-color:lightcoral;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .chat-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            background: linear-gradient(45deg, #ff7eb3, #ff758c, #ff5e62);
+            box-shadow: 0px 4px 10px rgba(255, 94, 98, 0.4);
+            position: absolute;
+            bottom: 70px;
+            right: 0px;
+            white-space: nowrap;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <img src="img/product/newlogo.png" alt="MAGIC" />
+        </div>
+  
+        <div class="search-bar">
+            <input type="search" placeholder="Search..." />
+            <span class="search-icon">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
+  
+        <!-- Desktop Menu -->
+        <ul class="nav-categories">
+            <li><a href="fix.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a  href="nav.html">Jewellery</a></li>
+            <li><a href="handbag.html">Handbag</a></li>
+            <li><a class="active"  href="sunglasses.html">Sunglass</a></li>
+            <li><a  href="perfume.html">Perfume</a></li>
+        </ul>
+  
+        <div class="nav-account">
+            <a href="#"><i class="far fa-heart"></i></a>
+            <a href="#"><i class="far fa-cart-plus"></i></a>
+            <span class="menu-btn" onclick="openSidebar()"><i class="fas fa-bars"></i></span>
+        </div>
+    </nav>
+  
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebar">
+        <span class="close-btn" onclick="closeSidebar()">&times;</span>
+        <ul>
+            <li></i> <a href="fix.html">Home</a></li>
+            <li></i> <a href="login.html">Login</a></li>
+            <li></i> <a href="nav.html">Jewellery</a></li>
+            <li></i> <a href="handbag.html">Handbag</a></li>
+            <li></i> <a class="active" href="sunglasses.html">Sunglass</a></li>
+            <li></i> <a  href="perfume.html">Perfume</a></li>
+         
+        </ul>
+    </div>
+    <main>
+        <div class="content">
+            <div class="slideshow-container">
+                <div class="mySlides">
+                    <img src="img/product/temp1.jpg" alt="Slide 1">
+                </div>
+    
+                <div class="mySlides">
+                    <img src="img/product/temp2.jpg" alt="Slide 2">
+                </div>
+    
+                <div class="mySlides">
+                    <img src="img/product/temp3.jpg" alt="Slide 3">
+                </div>
+    
+                <div class="mySlides">
+                    <img src="img/product/temp4.jpg" alt="Slide 4">
+                </div>
+            </div>
+    
+            <div class="dot-container">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+        </div>
+        <h2>Featured Product</h2>
+        <section>
+          <div id="product" class="product-container">
+            <div class="product-card">
+              <!-- product detail -->
+        
+            <!--  -->
+              <div class="image-container" onclick="showProduct('Vertical-Bifold-Wallet')">
+                <a href="new.html"><img src="img/product/wal1.jpg" alt="Image 1" class="product-image active"></a>
+                <img src="img/product/wal2.jpg" alt="Image 2" class="product-image active">
+    
+            </div>
+            <div class="product-info">
+                <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="rating">
+                <span>4.4 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+                <span class="current-price">₹2,999</span>
+                <span class="original-price">₹4,399</span>
+            </div>
+            <div class="product-name">
+          Wallet 
+            </div>
+            
+            <div class="btn">
+              <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
+            </div>
+        </div>
+            
+            
+        <div class="product-card">
+            <div class="image-container">
+                <img src="img/product/of1.jpg" alt="Image 1" class="product-image active"onclick="showProduct('Gucci-GG0392O-eyeglasses')">
+                <img src="img/product/of2.jpg" alt="Image 2" class="product-image">
+                <img src="img/product/of3.jpg" alt="Image 3" class="product-image">
+            
+            </div>
+            <div class="product-info">
+                <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="rating">
+                <span>4.3 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+                <span class="current-price">₹2,999</span>
+                <span class="original-price">₹3,399</span>
+            </div>
+            <div class="product-name">
+           Goggles
+            </div>
+            <div class="btn">
+              <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
+            </div>
+        </div> 
+    
+        <div class="product-card">
+            <div class="image-container">
+                <img src="img/product/hbrac2.jpg" alt="Image 1" class="product-image active"onclick="showProduct('diamond-eternity-band')">
+                <img src="img/product/vbrac2.jpg" alt="Image 2" class="product-image">
+                <img src="img/product/mbrac2.jpg" alt="Image 3" class="product-image">
+            </div>
+            <div class="product-info">
+                <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="rating">
+                <span>4.2 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+                <span class="current-price">₹4,999</span>
+                <span class="original-price">₹6,000</span>
+            </div>
+            <div class="product-name">
+                Bracelet
+            </div>
+            <div class="btn">
+              <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
+            </div>  
+        </div>
+    
+        <div class="product-card">
+            <div class="image-container">
+                <img src="img/product/s1.jpg" alt="Image 1" class="product-image active"onclick="showProduct('Eclipse-Rectangular-Sunglasses')">
+                <img src="img/product/s2.jpg" alt="Image 2" class="product-image">
+                <img src="img/product/s3.jpg" alt="Image 3" class="product-image">
+            </div>
+            <div class="product-info">
+                <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="rating">
+                <span>4.1 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+                <span class="current-price">₹4,000</span>
+                <span class="original-price">₹7,000</span>
+            </div>
+            <div class="product-name">
+         Sunglasses
+            </div>
+            <div class="btn">
+              <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
+            </div>
+        </div>
+    
+        <div class="product-card">
+            <div class="image-container">
+                <img src="img/product/2hnc.jpg" alt="Image 1" class="product-image active"onclick="showProduct('necklace')">
+                <img src="img/product/2vnc.jpg" alt="Image 2" class="product-image">
+                <img src="img/product/2mnc.jpg" alt="Image 3" class="product-image">
+            </div>
+            <div class="product-info">
+                <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="rating">
+                <span>4.8 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+                <span class="current-price">₹4,999</span>
+                <span class="original-price">₹6,399</span>
+            </div>
+            <div class="product-name">
+                Necklace
+            </div>
+            <div class="btn">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="buy-now">Buy Now</button>
+               
+            </div>
+        </div>
+        </div>
+        <div class="chat-icon" id="chat-icon">
+          <div class="chat-text" id="chatText">May I help you?</div>
+          <img src="img/chatbot.png" alt="Chat">
+      </div>
+    
+      <!-- Chatbot Container -->
+      <div class="chat-container" id="chat-container">
+          <div class="chat-header">
+              <h1>Magic AI</h1>
+              <button class="close-btn" id="close-btn">&times;</button>
+          </div>
+          <div class="chat-box" id="chat-box">
+              <div class="chat-message bot-message">Hello! Welcome to MAGIC Accessories! How can I assist you today?</div>
+          </div>
+          <div class="input-container">
+              <input type="text" id="user-input" placeholder="Type your message...">
+              <button id="send-button">Send</button>
+          </div>
+      </div>
+    
+     
+      </section>
+    
+    
+      
+    
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-col">
+            <h4>Contact Us</h4>
+            <ul>
+              <li><a href="theories/about.html">About Us</a></li>
+              <li><a href="mailto:om64312@gmail.com">om64312@gmail.com</a></li>
+              <li><a href="tel:931812189">9313812189</a></li>
+              <li><a href="theories/info.html">Info</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Consumer Policy</h4>
+            <ul>
+              <li><a href="theories/terms of service.html">Terms of Services</a></li>
+              <li><a href="theories/privacy.html">Privacy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Keep in touch with Us</h4>
+            <ul class="fa-ul">
+              <li><a href="https://x.com/Soni13062004?t=M0_6NmR6ZCFP9s_RLxrP6A&s=09">
+                <i class="fab fa-twitter"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/om-soni-6425262a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+                <i class="fab fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Let Us Help You</h4>
+            <ul>
+              <li><a href="theories/hecu.html">Help & Customer Service</a></li>
+              <li><a href="theories/return and refund.html">Returns & Refunds</a></li>
+              <li><a href="theories/shipdel.html">Shipping & Delivery</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>More from Magic</h4>
+            <ul>
+              <li><a href="handbag.html">Magic Handbags</a></li>
+              <li><a href="nav.html">Magic Jewellery</a></li>
+              <li><a href="sunglasses.html">Magic Sunlasses</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2025 Magic. All rights reserved.
+        </div>
+      </footer>
+    <script src="css/index.js"></script>
+    
+    </body>
+    </html>
+        <script>
+            let slideIndex = 0;
+            let autoSlide;
+    
+            function showSlides() {
+                let slides = document.getElementsByClassName("mySlides");
+                let dots = document.getElementsByClassName("dot");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";  
+                }
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1; }    
+                slides[slideIndex - 1].style.display = "block";  
+                dots[slideIndex - 1].className += " active";
+    
+                autoSlide = setTimeout(showSlides, 2000);
+            }
+    
+            function currentSlide(n) {
+                clearTimeout(autoSlide);
+                slideIndex = n;
+                showSlides();
+            }
+    
+            showSlides();
+            const chatIcon = document.getElementById("chat-icon");
+            const chatContainer = document.getElementById("chat-container");
+            const closeButton = document.getElementById("close-btn");
+    
+            // Show chatbox when icon is clicked
+            chatIcon.addEventListener("click", () => {
+                chatContainer.style.display = "block";
+            });
+    
+            // Close chatbox when close button is clicked
+            closeButton.addEventListener("click", () => {
+                chatContainer.style.display = "none";
+            });
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById('send-button').addEventListener('click', processInput);
+        document.getElementById('user-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') processInput();
+        });
+    });
+    // Advanced keyword analysis function with partial matching
+    function analyzeQuery(userInput) {
+        let bestMatch = { category: null, score: 0 };
+        const inputWords = userInput.toLowerCase().split(/\s+/); // Split input into words
+    
+        for (const [category, data] of Object.entries(knowledgeBase)) {
+            let score = 0;
+    
+            for (const keyword of data.keywords) {
+                const keywordPrefix = keyword.slice(0, 3).toLowerCase(); // Get first 3 letters
+                for (const word of inputWords) {
+                    if (word.startsWith(keywordPrefix)) {
+                        score++; // Increase score for partial matches
+                    }
+                }
+            }
+    
+            if (score > bestMatch.score) {
+                bestMatch = { category, score };
+            }
+        }
+    
+        if (bestMatch.score > 0) {
+            return knowledgeBase[bestMatch.category].response;
+        }
+    
+        return `🤖 I'm here to help! Ask me about jewelry, handbags, perfumes, or sunglasses. 😊`;
+    }
+    
+    
+    const knowledgeBase = {
+        greetings: {
+            keywords: ['hello', 'hi', 'hey', 'welcome', 'greetings'],
+            response: "Hello! 😊 I'm Magic AI. Ask me about jewelry, handbags, perfumes, or sunglasses!"
+        },
+        jewelry: {
+            keywords: ['jewelry', 'jewellery ','bracelet', 'necklace', 'ring', 'gold', 'silver', 'earrings', 'pendant'],
+            products: {
+                boys: {
+                neckchain: "📿 **Neck Chain**: ₹3,299",
+                chain_bracelet: "💎 **Chain Bracelet**: ₹2,799",
+                silver_ring: "💍 **Silver Ring**: ₹1,999",
+                diamond_bracelet: "✨ **Diamond Bracelet**: ₹3,999"
+            },
+            girls: {
+                necklace: "📿 **Necklace**: ₹2,999 (Original: ₹3,399)",
+                ring: "💍 **Ring**: ₹2,999 (Original: ₹3,399)",
+                earrings: "✨ **Earrings**: ₹2,999 (Original: ₹3,399)",
+                bracelet: "💎 **Bracelet**: ₹2,999 (Original: ₹3,399)"
+            }
+        },
+            response: `
+            <strong>✨ Our jewelry collection includes:</strong>
+              <strong>✨ Our Jewelry Collection:</strong>
+        <p>Are you looking for <strong>Boys' or Girls' accessories?</strong></p>
+        <button onclick="showJewelryOptions('boys')">👦 Boys' Accessories</button>
+        <button onclick="showJewelryOptions('girls')">👧 Girls' Accessories</button>
+        <br>
+            <em>Want more details? Click below:</em>
+            <br>
+          <a href="file:///C:/Magic%20Project/nav.html" target="_blank"><strong>🔗 View All Jewelry</strong></a>`
+        },
+        wallets: {
+            keywords: ['wallet', 'menpurse', 'cardholder'],
+            response: `
+            <strong>We also have a selection of wallets:</strong>
+            <ul>
+                <li><strong>Vertical Bifold Wallet</strong>: ₹2,099 - Made from premium leather with multiple card slots</li>
+            </ul>
+            <em>What type of wallet are you looking for?</em>`
+        },
+    
+        handbags: {
+            keywords: ['handbag', 'purse', 'bag', 'leather', 'travel', 'tote', 'clutch'],
+            products: {
+                "brown leather bag": "👜 **Brown Leather Bag**: ₹3,999 - Classic vintage",
+                "black fabric bag": "🖤 **Black Fabric Bag**: ₹2,499 - Travel-friendly",
+                "greycraft bag": "🔹 **GreyCraft Bag**: ₹2,999 - Multiple compartments",
+                "stylish clutch": "✨ **Stylish Clutch**: ₹1,499 - Perfect for evenings out"
+            },
+            response: `
+            <strong>👜 Handbag options:</strong>
+            <ul>
+                <li><strong>Brown Leather Bag</strong>: ₹3,999 - Classic vintage</li>
+                <li><strong>Black Fabric Bag</strong>: ₹2,499 - Travel-friendly</li>
+                <li><strong>GreyCraft Bag</strong>: ₹2,999 - Multiple compartments</li>
+                <li><strong>Stylish Clutch</strong>: ₹1,499 - Perfect for evenings out</li>
+            </ul>
+            <em>Want more details? Click below:</em>
+            <br>
+            <a href="file:///C:/Magic%20Project/handbag.html" target="_blank"><strong>🔗 View All Handbags</strong></a>`
+        },
+    
+        perfumes: {
+            keywords: ['perfume', 'fragrance', 'scent', 'body spray', 'cologne', 'eau de toilette'],
+            products: {
+                "envy body spray": "🌿 **Envy Body Spray**: ₹2,999 - Fresh daily wear",
+                "wild stone edt": "🔥 **Wild Stone EDT**: ₹3,499 - Adventurous scent",
+                "fogg xtreme": "🌬 **Fogg Xtreme**: ₹2,799 - Long-lasting",
+                "denver": "💨 **Denver**: ₹2,499 - Light and refreshing"
+            },
+            response: `
+            <strong>🌸 Popular fragrances:</strong>
+            <ul>
+                <li><strong>Envy Body Spray</strong>: ₹2,999 - Fresh daily wear</li>
+                <li><strong>Wild Stone EDT</strong>: ₹3,499 - Adventurous scent</li>
+                <li><strong>Fogg Xtreme</strong>: ₹2,799 - Long-lasting</li>
+                <li><strong>Denver</strong>: ₹2,499 - Light and refreshing</li>
+            </ul>
+            <em>Want more details? Click below:</em>
+            <br>
+                   <a href="file:///C:/Magic%20Project/perfume.html" target="_blank"><strong>🔗 View All Perfumes</strong></a>`
+    
+        },
+        sunglasses: {
+            keywords: ['sunglasses', 'shades', 'eyewear', 'glasses','sunglass'],
+            products: {
+                "gucci sunglasses": "🕶 **Gucci Sunglasses**: ₹2,999 - Elegant design with UV protection",
+                "ray-ban shades": "😎 **Ray-Ban Shades**: ₹3,499 - Classic and timeless",
+                "fashion sunglasses": "✨ **Fashion Sunglasses**: ₹2,499 - Trendy and affordable"
+            },
+            response: `
+            <strong>😎 Check out our stylish sunglasses:</strong>
+            <ul>
+                <li><strong>Gucci Sunglasses</strong>: ₹2,999 - Elegant design with UV protection</li>
+                <li><strong>Ray-Ban Shades</strong>: ₹3,499 - Classic and timeless</li>
+                <li><strong>Fashion Sunglasses</strong>: ₹2,499 - Trendy and affordable options</li>
+            </ul>
+            <em>Want more details? Click below:</em>
+            <br>
+               <a href="file:///C:/Magic%20Project/sunglasses.html" target="_blank"><strong>🔗 View All Sunglasses</strong></a>`
+       
+        },
+        info: {
+            keywords: [ 'about', 'who are you', 'company','about us'],
+            response: `
+            <strong>✨ About Magic Accessories:</strong>
+            <p>We offer high-quality fashion accessories with a touch of magic! From elegant jewelry to stylish handbags, we have it all.</p>
+            <em>Want more details? Click below:</em>
+            <br>
+            <a href="file:///C:/Magic%20Project/theories/about.html" target="_blank"><strong>🔗 About us </strong></a>`
+        },
+        support: {
+            keywords: ['help', 'support', 'customer', 'contact','email','email id'],
+            response: `
+            <strong>📞 Customer Support:</strong>
+            <ul>
+                <li>Email: om64312@gmail.com</li>
+                <li>Hours: 9 AM - 6 PM IST</li>
+            </ul>
+            <em>Want more details? Click below:</em>
+            <br>
+            <a href="file:///C:/Magic%20Project/theories/hecu.html" target="_blank"><strong>🔗 Contact Support</strong></a>`
+        },
+        terms: {
+            keywords: ['terms', 'policy', 'return', 'refund', 'exchange'],
+            response: `
+            <strong>📜 Terms & Policies:</strong>
+            <ul>
+                <li>30-day return policy</li>
+                <li>Refunds processed within 7 days</li>
+                <li>Exchanges available for defective products</li>
+            </ul>
+            <em>Want more details? Click below:</em>
+            <br>
+            <a href="file:///C:/Magic%20Project/theories/terms%20of%20service.html" target="_blank"><strong>🔗 View Terms & Conditions</strong></a>`
+        },
+        social: {
+            keywords: ['social', 'follow', 'twitter', 'linkedin', 'x', 'connect','platform'],
+            response: `
+            <strong>📢 Stay Connected!</strong>
+            <ul>
+                <li>Follow us on <a href="https://x.com/Soni13062004?t=M0_6NmR6ZCFP9s_RLxrP6A&s=09" target="_blank"><strong>Twitter (X)</strong></a></li>
+                <li>Connect with us on <a href="https://www.linkedin.com/in/om-soni-6425262a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_apps" target="_blank"><strong>LinkedIn</strong></a></li>
+            </ul>
+            <em>Follow us for updates, deals, and new arrivals! 🚀</em>`
+        }
+        
+    
+    };
+    
+    function processInput() {
+        const inputField = document.getElementById('user-input');
+        const userMessage = inputField.value.trim().toLowerCase();
+    
+        if (!userMessage) return;
+    
+        displayMessage(userMessage, 'user-message');
+        inputField.value = '';
+    
+        const loading = displayMessage('...', 'bot-message');
+    
+        setTimeout(() => {
+            loading.remove();
+            const response = analyzeQuery(userMessage);
+            displayMessage(response, 'bot-message');
+        }, 800);
+    }
+    function showJewelryOptions(category) {
+        let response = '';
+    
+        if (category === 'boys') {
+            response = `
+            <strong>👦 Boys' Jewelry Collection:</strong>
+            <ul>
+                <li>📿 Neck Chain - ₹3,299</li>
+                <li>💎 Chain Bracelet - ₹2,799</li>
+                <li>💍 Silver Ring - ₹1,999</li>
+                <li>✨ Diamond Bracelet - ₹3,999</li>
+            </ul>
+            <em>Want more details? Click below:</em>
+            <br>
+            <a href="file:///C:/Magic%20Project/nav.html" target="_blank"><strong>🔗 View All Boys' Jewelry</strong></a>`;
+        } else {
+            response = `
+            <strong>👧 Girls' Jewelry Collection:</strong>
+            <ul>
+                <li>📿 Necklace - ₹2,999 (Original: ₹3,399)</li>
+                <li>💍 Ring - ₹2,999 (Original: ₹3,399)</li>
+                <li>✨ Earrings - ₹2,999 (Original: ₹3,399)</li>
+                <li>💎 Bracelet - ₹2,999 (Original: ₹3,399)</li>
+            </ul>
+            <em>Want more details? Click below:</em>
+            <br>
+            <a href="file:///C:/Magic%20Project/nav.html" target="_blank"><strong>🔗 View All Girls' Jewelry</strong></a>`;
+        }
+    
+        displayMessage(response, 'bot-message');
+    }
+    
+    function analyzeQuery(userInput) {
+        let bestMatch = null;
+        let bestMatchType = null; // "product" or "category"
+    
+        for (const [category, data] of Object.entries(knowledgeBase)) {
+            for (const [product, response] of Object.entries(data.products || {})) {
+                if (userInput.includes(product)) {
+                    return response; // Exact product match takes priority
+                }
+            }
+    
+            for (const keyword of data.keywords) {
+                if (userInput.includes(keyword)) {
+                    if (bestMatch === null || bestMatchType !== "product") { // Prefer product matches
+                        bestMatch = data.response;
+                        bestMatchType = "category";
+                    }
+                }
+            }
+        }
+    
+        return bestMatch || `🤖 I'm here to help! Ask me about jewelry, handbags, perfumes, or sunglasses. 😊`;
+    }
+    
+    
+    function displayMessage(content, type) {
+        const chatBox = document.getElementById('chat-box');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chat-message ${type}`;
+        messageDiv.innerHTML = content;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return messageDiv;
+    }
+    
+    function openSidebar() {
+        document.getElementById("sidebar").style.left = "0";
+    }
+    
+    function closeSidebar() {
+        document.getElementById("sidebar").style.left = "-250px";
+    }
+        </script>
+    
+    </body>
+    </html>
+    

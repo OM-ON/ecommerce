@@ -1,0 +1,299 @@
+<html>
+    <head>
+<Style>
+    .search-container {
+    margin-bottom: 20px;
+}
+
+#searchBar {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 10px;
+    display: none;
+}
+
+.product-image.active {
+    display: block;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.price {
+    margin: 10px 0;
+}
+
+.current-price {
+    font-size: 20px;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.original-price {
+    font-size: 16px;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.rating {
+    color: #f39c12;
+    margin: 10px 0;
+}
+
+.btn {
+    display: flex;
+    gap: 10px;
+}
+
+.add-to-cart, .buy-now {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buy-now {
+    background-color: #e74c3c;
+}
+
+</Style>
+</head>
+<body>
+<section>
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Search for products..." oninput="searchProducts()">
+    </div>
+
+    <!-- Product Container -->
+    <div id="product" class="product-container">
+        <!-- Product cards will be dynamically inserted here -->
+    </div>
+
+</section>
+<script>
+    // Sample product data (replace this with data from your pages)
+const products = [
+    {
+        name: "Handbag Brown",
+        price: "₹2,999",
+        originalPrice: "₹4,399",
+        rating: "4.4 ★ | 43",
+        images: ["img/product/hg2.jpg"],
+        category: "Handbag",
+    },
+    {
+        name: "Handbag Black",
+        price: "₹2,999",
+        originalPrice: "₹4,399",
+        rating: "4.4 ★ | 43",
+        images: ["img/product/hg3.webp"],
+        category: "Handbag",
+    },
+    {
+        name: "Handbag Greycraft",
+        price: "₹2,999",
+        originalPrice: "₹4,399",
+        rating: "4.4 ★ | 43",
+        images: ["img/product/hg4.webp"],
+        category: "Handbag",
+    },
+    {
+        name: "Handbag",
+        price: "₹2,999",
+        originalPrice: "₹4,399",
+        rating: "4.4 ★ | 43",
+        images: ["img/product/hg5.webp"],
+        category: "Handbag",
+    },
+    {
+        name: "ENVY",
+        price: "₹2,999",
+        originalPrice: "₹4,399",
+        rating: "4.4 ★ | 43",
+        images: ["img/product/en1.jpeg"],
+        category: "Perfume",
+    },
+    {
+        name: "Denver",
+        price: "₹2,999",
+        originalPrice: "₹4,399",
+        rating: "4.4 ★ | 43",
+        images: ["img/product/dn1.jpeg"],
+        category: "Perfume",
+    },
+    {
+        name: "Wild Stone",
+        price: "₹2,999",
+        originalPrice: "₹4,399",
+        rating: "4.4 ★ | 43",
+        images: ["img/product/ws1.jpeg"],
+        category: "Perfume",
+    },
+    {
+        name: "Fogg",
+        price: "₹2,999",
+        originalPrice: "₹4,399",
+        rating: "4.4 ★ | 43",
+        images: ["img/product/fg1.jpeg"],
+        category: "Perfume",
+    },
+    {
+        name: "Optical frame glass",
+        price: "₹2,999",
+        originalPrice: "₹3,399",
+        rating: "4.3 ★ | 43",
+        images: ["img/product/of1.jpg", "img/product/of2.jpg", "img/product/of3.jpg"],
+        category: "Glasses",
+    },
+    {
+        name: "Sunglass",
+        price: "₹2,999",
+        originalPrice: "₹3,399",
+        rating: "4.3 ★ | 43",
+        images: ["img/product/s1.jpg", "img/product/s2.jpg", "img/product/s3.jpg"],
+        category: "Glasses",
+    },
+    {
+        name: "Chain Bracelet",
+        price: "₹2,999",
+        originalPrice: "₹3,399",
+        rating: "4.3 ★ | 43",
+        images: ["img/product/cb1.jpeg", "img/product/cb2.jpeg", "img/product/cb3.jpeg"],
+        category: "Jewelry",
+    },
+    {
+        name: "Neckchain",
+        price: "₹2,999",
+        originalPrice: "₹3,399",
+        rating: "4.3 ★ | 43",
+        images: ["img/product/chain nec1.jpeg", "img/product/chian nec2.jpeg", "img/product/chain nec3.jpeg"],
+        category: "Jewelry",
+    },
+    {
+        name: "Dimond Bracelet",
+        price: "₹2,999",
+        originalPrice: "₹3,399",
+        rating: "4.3 ★ | 43",
+        images: ["img/product/gz1.jpeg", "img/product/gz2.jpeg", "img/product/gz3.jpeg"],
+        category: "Jewelry",
+    },
+    {
+        name: "Silver Ring",
+        price: "₹2,999",
+        originalPrice: "₹3,399",
+        rating: "4.3 ★ | 43",
+        images: ["img/product/gb1.jpeg", "img/product/gb2.jpeg", "img/product/gb3.jpeg"],
+        category: "Jewelry",
+    },
+    {
+        name: "Bracelet",
+        price: "₹2,999",
+        originalPrice: "₹3,399",
+        rating: "4.3 ★ | 43",
+        images: ["img/product/hbrac1.jpg", "img/product/vbrac1.jpg", "img/product/mbrac1.jpg"],
+        category: "Jewelry",
+    },
+    {
+        name: "Necklace",
+        price: "₹2,999",
+        originalPrice: "₹3,399",
+        rating: "4.3 ★ | 43",
+        images: ["img/product/1hnc.jpg", "img/product/1vnc.jpg", "img/product/1mnc.jpg"],
+        category: "Jewelry",
+    },
+];
+
+// Function to display products
+function displayProducts(filteredProducts) {
+    const productContainer = document.getElementById("product");
+    productContainer.innerHTML = ""; // Clear previous results
+
+    filteredProducts.forEach((product) => {
+        const productCard = document.createElement("div");
+        productCard.className = "product-card";
+
+        productCard.innerHTML = `
+            <div class="image-container">
+                ${product.images
+                    .map((image, index) => `<img src="${image}" alt="Image ${index + 1}" class="product-image ${index === 0 ? "active" : ""}">`)
+                    .join("")}
+            </div>
+            <div class="product-info">
+                <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="rating">
+                <span>${product.rating}</span>
+            </div>
+            <div class="price">
+                <span class="current-price">${product.price}</span>
+                <span class="original-price">${product.originalPrice}</span>
+            </div>
+            <div class="product-name">
+                ${product.name}
+            </div>
+            <div class="btn">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
+            </div>
+        `;
+
+        productContainer.appendChild(productCard);
+    });
+}
+
+// Function to search products
+function searchProducts() {
+    const searchQuery = document.getElementById("searchBar").value.toLowerCase();
+
+    // Filter products based on the search query
+    const filteredProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery)
+    );
+
+    // Display the filtered products
+    displayProducts(filteredProducts);
+}
+
+// Initial load: Display all products
+window.onload = () => {
+    displayProducts(products);
+};
+</script>
+</body>
+</html>

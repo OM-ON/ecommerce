@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <title>Magic Home</title>
+<head>
+  <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        /* Space for the navbar to prevent overlap */
+        .content {
+            padding-top: 0; /* Remove any space above */
+        }
+
+        /* Slideshow container with full height */
+        .slideshow-container {
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            position: relative;
+            margin: 0;
+            overflow: hidden;
+            border-radius: 0;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); */
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Prevent cutting of the image while maintaining aspect ratio */
+            display: block;
+        }
+
+       
+
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .slideshow-container {
+                height: 60vh; /* Slightly smaller height for tablet-sized screens */
+            }
+
+            .dot {
+                height: 12px;
+                width: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slideshow-container {
+                height: 50vh; /* Smaller height for mobile screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-logo">
+      <img src="img/product/Magic.png" alt="MAGIC" />
+    </div>
+    <div class="search-bar">
+      <input type="search" placeholder="Search..." />
+      <span class="search-icon">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+    <ul class="nav-categories">
+      <li><a class="active" href="slide.html">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="nav.html">Jewellery</a></li>
+      <li><a  href="handbag.html">Handbag</a></li>
+      <li><a href="sunglasses.html">Sunglass</a></li>
+      <li><a  href="perfume.html">Perfume</a></li>
+      <!-- <li><a href="deal.html">Deal</a></li> -->
+    </ul>
+    <div class="nav-account">
+      <a href="#"><i class="far far fa-heart"></i></a>
+      <a href="#"><i class="far fa-cart-plus"></i></a>
+    </div>
+  </nav>
+<main>
+    <!-- Main content -->
+    <div class="content">
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <img src="img/product/temp1.jpg" alt="Slide 1">
+            </div>
+
+            <div class="mySlides">
+                <img src="img/product/temp2.jpg" alt="Slide 2">
+            </div>
+
+            <div class="mySlides">
+                <img src="img/product/temp3.jpg" alt="Slide 3">
+            </div>
+
+            <div class="mySlides">
+                <img src="img/product/temp4.jpg" alt="Slide 4">
+            </div>
+        </div>
+
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </div>
+    
+    <h2>Featured Product</h2>
+    <section>
+      <div id="product" class="product-container">
+        <div class="product-card">
+          
+          <div class="image-container" onclick="showProduct('Vertical-Bifold-Wallet')">
+            <img src="img/product/wal1.jpg" alt="Image 1" class="product-image active">
+            <img src="img/product/wal2.jpg" alt="Image 2" class="product-image">
+
+        </div>
+        <div class="product-info">
+            <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="rating">
+            <span>4.4 ★</span> <span>| 43</span>
+        </div>
+        <div class="price">
+            <span class="current-price">₹2,999</span>
+            <span class="original-price">₹4,399</span>
+        </div>
+        <div class="product-name">
+      Wallet 
+        </div>
+        <div class="btn">
+            <button class="buy-now">Buy Now</button>
+        </div>
+    </div>
+        
+        
+    <div class="product-card">
+        <div class="image-container">
+            <img src="img/product/of1.jpg" alt="Image 1" class="product-image active"onclick="showProduct('Gucci-GG0392O-eyeglasses')">
+            <img src="img/product/of2.jpg" alt="Image 2" class="product-image">
+            <img src="img/product/of3.jpg" alt="Image 3" class="product-image">
+        
+        </div>
+        <div class="product-info">
+            <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="rating">
+            <span>4.3 ★</span> <span>| 43</span>
+        </div>
+        <div class="price">
+            <span class="current-price">₹2,999</span>
+            <span class="original-price">₹3,399</span>
+        </div>
+        <div class="product-name">
+       Goggles
+        </div>
+        <div class="btn">
+            <button class="buy-now">Buy Now</button>
+        </div>
+    </div> 
+
+    <div class="product-card">
+        <div class="image-container">
+            <img src="img/product/hbrac2.jpg" alt="Image 1" class="product-image active"onclick="showProduct('diamond-eternity-band')">
+            <img src="img/product/vbrac2.jpg" alt="Image 2" class="product-image">
+            <img src="img/product/mbrac2.jpg" alt="Image 3" class="product-image">
+        </div>
+        <div class="product-info">
+            <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="rating">
+            <span>4.2 ★</span> <span>| 43</span>
+        </div>
+        <div class="price">
+            <span class="current-price">₹4,999</span>
+            <span class="original-price">₹6,000</span>
+        </div>
+        <div class="product-name">
+            Bracelet
+        </div>
+        <div class="btn">
+            <button class="buy-now">Buy Now</button>
+        </div>  
+    </div>
+
+    <div class="product-card">
+        <div class="image-container">
+            <img src="img/product/s1.jpg" alt="Image 1" class="product-image active"onclick="showProduct('Eclipse-Rectangular-Sunglasses')">
+            <img src="img/product/s2.jpg" alt="Image 2" class="product-image">
+            <img src="img/product/s3.jpg" alt="Image 3" class="product-image">
+        </div>
+        <div class="product-info">
+            <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="rating">
+            <span>4.1 ★</span> <span>| 43</span>
+        </div>
+        <div class="price">
+            <span class="current-price">₹4,000</span>
+            <span class="original-price">₹7,000</span>
+        </div>
+        <div class="product-name">
+     Sunglasses
+        </div>
+        <div class="btn">
+            <button class="buy-now">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="image-container">
+            <img src="img/product/2hnc.jpg" alt="Image 1" class="product-image active"onclick="showProduct('necklace')">
+            <img src="img/product/2vnc.jpg" alt="Image 2" class="product-image">
+            <img src="img/product/2mnc.jpg" alt="Image 3" class="product-image">
+        </div>
+        <div class="product-info">
+            <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="rating">
+            <span>4.8 ★</span> <span>| 43</span>
+        </div>
+        <div class="price">
+            <span class="current-price">₹4,999</span>
+            <span class="original-price">₹6,399</span>
+        </div>
+        <div class="product-name">
+            Necklace
+        </div>
+        <div class="btn">
+          <button class="buy-now">Buy Now</button>
+           
+        </div>
+    </div>
+    </div>
+    <div class="product-detail" id="gold-diamond-ring">
+      <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+      <img src="img/product/hring.jpg" alt="Gold Diamond Ring" />
+      <div class="product-title">Gold Diamond Ring</div>
+      <div class="product-price">₹2,099</div>
+      <div class="product-description">
+        <p>
+          This elegant gold diamond ring is perfect for special occasions or
+          everyday wear. Its timeless design adds a touch of luxury to any outfit.
+        </p>
+      </div>
+    </div>
+
+    <div class="product-detail" id="Vertical-Bifold-Wallet">
+      <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+      <img src="img/product/wal1.jpg" alt="Vertical Bifold Wallet"/>
+      <div class="product-title">Vertical Bifold Wallet</div>
+      <div class="product-price">₹2,099</div>
+      <div class="product-description">
+        <p>
+          description: Brand:
+          Christian Dior
+          Model: Vertical Bifold Wallet Gravity Leather and Smooth Black
+          Description: This wallet is made from black smooth calfskin with a Dior Oblique Jacquard motif lining. It features a billfold compartment, a zipped coin compartment, and eight card slots. The wallet has a silver-colored Dior signature log on the front.
+        </p>
+      </div>
+    </div>
+
+    <div class="product-detail" id="Gucci-GG0392O-eyeglasses">
+      <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+      <img src="img/product/of1.jpg" alt="Gucci-GG0392O-eyeglasses"/>
+      <div class="product-title">Gucci-GG0392O-eyeglasses</div>
+      <div class="product-price">₹2,099</div>
+      <div class="product-description">
+        <p>
+          description: These Gucci glasses feature a round metal frame for a classic look.
+
+          The silver color is versatile and can be paired with a variety of outfits.
+          
+          The glasses are likely made from a durable metal material, such as stainless steel or titanium.
+        </p>
+      </div>
+    </div>
+
+    <div class="product-detail" id="diamond-eternity-band">
+      <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+      <img src="img/product/hbrac2.jpg" alt="diamond-eternity-band"/>
+      <div class="product-title">diamond-eternity-band</div>
+      <div class="product-price">₹2,099</div>
+      <div class="product-description">
+        <p>
+          description: Style: Eternity band
+          Gemstone: Diamonds (round cut)
+          Metal: White gold or platinum
+        </p>
+      </div>
+    </div>
+
+    <div class="product-detail" id="Eclipse-Rectangular-Sunglasses">
+      <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+      <img src="img/product/s1.jpg" alt="Eclipse-Rectangular-Sunglasses"/>
+      <div class="product-title">Eclipse-Rectangular-Sunglasses</div>
+      <div class="product-price">₹2,099</div>
+      <div class="product-description">
+        <p>
+          The lenses are tinted dark, offering both privacy and protection from the sun’s rays, making them an ideal accessory for any occasion. 
+        </p>
+      </div>
+    </div>
+
+    <div class="product-detail" id="necklace">
+      <span class="back-button" onclick="showThumbnails()">← Back to Products</span>
+      <img src="img/product/2hnc.jpg" alt="necklace"/>
+      <div class="product-title">necklace</div>
+      <div class="product-price">₹2,099</div>
+      <div class="product-description">
+        <p>
+          The pendant is made of cubic zirconia, a type of synthetic diamond simulant. The necklace is made from rhodium-plated sterling silver.
+        </p>
+      </div>
+    </div>
+    
+  </section>
+
+
+  
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><a href="theories/about.html">About Us</a></li>
+          <li><a href="mailto:om64312@gmail.com">om64312@gmail.com</a></li>
+          <li><a href="tel:931812189">9313812189</a></li>
+          <li><a href="theories/info.html">Info</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Consumer Policy</h4>
+        <ul>
+          <li><a href="theories/terms of service.html">Terms of Services</a></li>
+          <li><a href="theories/privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Keep in touch with Us</h4>
+        <ul class="fa-ul">
+          <li><a href="https://x.com/Soni13062004?t=M0_6NmR6ZCFP9s_RLxrP6A&s=09">
+            <i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/om-soni-6425262a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+            <i class="fab fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Let Us Help You</h4>
+        <ul>
+          <li><a href="theories/hecu.html">Help & Customer Service</a></li>
+          <li><a href="theories/return and refund.html">Returns & Refunds</a></li>
+          <li><a href="theories/shipdel.html">Shipping & Delivery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More from Magic</h4>
+        <ul>
+          <li><a href="handbag.html">Magic Handbags</a></li>
+          <li><a href="nav.html">Magic Jewellery</a></li>
+          <li><a href="sunglasses.html">Magic Sunlasses</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Magic. All rights reserved.
+    </div>
+  </footer>
+  
+  
+
+<script src="css/index.js"></script>
+
+</body>
+</html>
+    <script>
+        let slideIndex = 0;
+        let autoSlide;
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }    
+            slides[slideIndex - 1].style.display = "block";  
+            dots[slideIndex - 1].className += " active";
+
+            autoSlide = setTimeout(showSlides, 2000);
+        }
+
+        function currentSlide(n) {
+            clearTimeout(autoSlide);
+            slideIndex = n;
+            showSlides();
+        }
+
+        showSlides();
+    </script>
+
+</body>
+</html>

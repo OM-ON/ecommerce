@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Poppins&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+      <link rel="stylesheet" href="jewellery.css">
+      <title>Jewellery</title>
+      <style>
+         .cart-container {
+         position: relative;
+         cursor: pointer;
+         }
+         .cart-icon {
+         position: relative;
+         font-size: 24px;
+         }
+         .cart-icon span {
+         background: red;
+         color: white;
+         border-radius: 50%;
+         padding: 5px 10px;
+         position: absolute;
+         top: -10px;
+         right: -10px;
+         font-size: 14px;
+         }
+         button {
+         background: blue;
+         color: white;
+         border: none;
+         padding: 8px 12px;
+         cursor: pointer;
+         margin-top: 10px;
+         border-radius: 5px;
+         }
+         #notification {
+         position: fixed;
+         top: 20px; /* Slightly lower for better visibility */
+         left: 50%;
+         transform: translateX(-50%);
+         background: green;
+         color: white;
+         padding: 12px 18px;
+         border-radius: 5px;
+         font-size: 16px;
+         font-weight: bold;
+         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+         z-index: 9999; /* Ensures it stays on top of other elements */
+         opacity: 1;
+         transition: opacity 0.5s ease-in-out;
+         }
+         /* Fade out effect */
+         #notification.hidden {
+         opacity: 0;
+         pointer-events: none; /* Prevents interaction during fade-out */
+         }
+         /* wishlist */
+         /* CSS Variables for Consistency */
+         :root {
+         --primary-color: #333;
+         --secondary-color: #f8f9fa;
+         --accent-color: red;
+         --text-color: white;
+         --shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+         --spacing: 15px;
+         }
+         .cons {
+         display: flex;
+         gap: var(--spacing);
+         }
+         /* Wishlist Icon */
+         .wishlist-container {
+         position: relative;
+         cursor: pointer;
+         }
+         .wishlist-icon {
+         font-size: 24px;
+         position: relative;
+         }
+         .wishlist-icon span {
+         background: var(--accent-color);
+         color: var(--text-color);
+         border-radius: 50%;
+         padding: 5px 10px;
+         position: absolute;
+         top: -10px;
+         right: -10px;
+         font-size: 14px;
+         }
+         /* Wishlist Button */
+         .wishlist-btn {
+         background: none;
+         border: none;
+         font-size: 30px;
+         cursor: pointer;
+         transition: color 0.3s ease-in-out;
+         color: transparent;
+         -webkit-text-stroke: 1.5px black;
+         }
+         .wishlist-btn.active {
+         color: var(--accent-color);
+         -webkit-text-stroke: 0;
+         }
+         /* Wishlist Popup */
+         #wishlist-popup {
+         position: absolute;
+         top: 60px;
+         right: 20px;
+         background: rgba(255, 255, 255, 0.95);
+         padding: 20px;
+         border-radius: 12px;
+         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+         width: 300px;
+         max-height: 400px;
+         overflow-y: auto;
+         display: none;
+         z-index: 1000;
+         border: 1px solid #ddd;
+         animation: slideDown 0.3s ease-in-out;
+         }
+         @keyframes slideDown {
+         from {
+         opacity: 0;
+         transform: translateY(-20px);
+         }
+         to {
+         opacity: 1;
+         transform: translateY(0);
+         }
+         }
+         #wishlist-popup.show {
+         display: block;
+         }
+         /* Wishlist Items */
+         #wishlist-items {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+         margin-top: 15px;
+         }
+         .wishlist-item {
+         display: flex;
+         align-items: center;
+         gap: 10px;
+         padding: 10px;
+         border-radius: 8px;
+         background: #f9f9f9;
+         transition: background 0.3s ease;
+         }
+         .wishlist-item:hover {
+         background: #f1f1f1;
+         }
+         .wishlist-item img {
+         width: 50px;
+         height: 50px;
+         border-radius: 8px;
+         object-fit: cover;
+         }
+         .wishlist-item span {
+         font-size: 14px;
+         color: #333;
+         }
+         .wishlist-item .price {
+         font-size: 14px;
+         color: var(--accent-color);
+         font-weight: bold;
+         margin-left: auto; /* Align price to the right */
+         }
+         /* Clear All Button */
+         #clear-wishlist {
+         width: 100%;
+         padding: 10px;
+         margin-top: 15px;
+         background: var(--accent-color);
+         color: var(--text-color);
+         border: none;
+         border-radius: 8px;
+         cursor: pointer;
+         font-size: 14px;
+         transition: background 0.3s ease;
+         }
+         #clear-wishlist:hover {
+         background: #cc0000;
+         }
+         /* Close Button */
+         .close-btn {
+         position: absolute;
+         top: 15px;
+         right: 15px;
+         font-size: 24px;
+         font-weight: bold;
+         cursor: pointer;
+         color: var(--accent-color);
+         background: none;
+         border: none;
+         }
+         /* Notification */
+         #notificatio {
+         position: fixed;
+         top: 20px;
+         left: 50%;
+         transform: translateX(-50%);
+         background: rgba(0, 0, 0, 0.9);
+         color: var(--text-color);
+         padding: 12px 20px;
+         border-radius: 5px;
+         font-size: 16px;
+         font-weight: bold;
+         box-shadow: var(--shadow);
+         opacity: 0;
+         transition: opacity 0.3s ease-in-out;
+         z-index: 9999; /* Ensures it's above all elements */
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         min-width: 200px;
+         max-width: 300px;
+         text-align: center;
+         }
+         /* Show Notification */
+         #notificatio.show {
+         opacity: 1;
+         }
+         /* Responsive Design */
+         @media (max-width: 600px) {
+         #wishlist-popup {
+         width: 90%;
+         right: 5%;
+         top: 70px;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <nav class="nav-bar">
+         <div class="nav-logo">
+            <img src="img/product/newlogo.png" alt="MAGIC" />
+         </div>
+         <div class="search-bar">
+            <input type="search" id="product-search" placeholder="" onkeyup="filterProducts()" />
+            <span class="search-icon">
+            <i class="fas fa-search"></i>
+            </span>
+            <ul id="product-list" style="
+               position: absolute;
+               top: 110%;
+               left: 0;
+               width: 100%;
+               background: white;
+               border: 1px solid #ddd;
+               border-radius: 8px;
+               list-style: none;
+               padding: 0;
+               margin: 5px 0 0 0;
+               box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+               max-height: 200px;
+               overflow-y: auto;
+               display: none; /* hidden by default */
+               flex-direction: column;
+               z-index:9999;
+               padding:10px;
+               ">
+            </ul>
+         </div>
+         <div id="notification" class="hidden">✅ Product added to cart!</div>
+         <div id="notificatio"></div>
+         <!-- Wishlist Popup -->
+         <div id="wishlist-popup">
+            <h3>Your Wishlist</h3>
+            <span id="close-wishlist" class="close-btn">&times;</span>
+            <div id="wishlist-items"></div>
+            <button id="clear-wishlist" class="clear-btn">Clear All</button>
+         </div>
+         <!-- Desktop Menu -->
+         <ul class="nav-categories">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/jewellery" class="active">Jewellery</a></li>
+            <li><a href="/handbags" >Handbag</a></li>
+            <li><a href="/sunglasses">Sunglass</a></li>
+            <li><a href="/perfumes">Perfume</a></li>
+            <li><a href="/logout">logout</a></li>
+         </ul>
+         <div class="nav-account">
+            <div class="cons">
+               <div class="wishlist-container">
+                  <div class="wishlist-icon" id="wishlist-icon">
+                     ❤️ <span id="wishlist-count">0</span>
+                  </div>
+               </div>
+            </div>
+            <div class="cart-container">
+               <div class="cart-icon" id="cart-icon">
+                  🛒 <span id="cart-count">0</span>
+               </div>
+            </div>
+            <span class="menu-btn" onclick="openSidebar()"><i class="fas fa-bars"></i></span>
+         </div>
+      </nav>
+      <!-- Sidebar Menu -->
+      <div class="sidebar" id="sidebar">
+         <span class="clos-btn" onclick="closeSidebar()">&times;</span>
+         <ul>
+            <li></i> <a href="fix.html">Home</a></li>
+            <li></i> <a href="login.html">Login</a></li>
+            <li></i> <a  class="active" href="nav.html">Jewellery</a></li>
+            <li></i> <a href="handbag.html">Handbag</a></li>
+            <li></i> <a href="sunglasses.html">Sunglass</a></li>
+            <li></i> <a href="perfume.html">Perfume</a></li>
+         </ul>
+      </div>
+      <main>
+      <h1>Boys Accessories</h1>
+      <section>
+         <div id="product" class="product-container">
+         <!-- Product 1: Chain Bracelet -->
+         <div class="product-card" data-id="5" data-name="Chain Bracelet" data-price="2999" data-image="img/product/cb1.jpeg">
+            <div class="image-container">
+               <a href="product17.html">
+                  <!-- Link to the product detail page -->
+                  <img src="img/product/cb1.jpeg" alt="Image 1" class="product-image active">
+                  <img src="img/product/cb2.jpeg" alt="Image 2" class="product-image">
+                  <img src="img/product/cb3.jpeg" alt="Image 3" class="product-image">
+               </a>
+            </div>
+            <div class="product-info">
+               <button class="wishlist-btn">&#10084;</button>
+            </div>
+            <div class="rating">
+               <span>4.3 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+               <span class="current-price">₹2,999</span>
+               <span class="original-price">₹3,399</span>
+            </div>
+            <div class="product-name">Chain Bracelet</div>
+            <div class="btn">
+               <button class="add-to-cart">Add to Cart</button>
+               <button class="buy-now">Buy Now</button>
+            </div>
+         </div>
+         <!-- Product 2: Neckchain -->
+         <div class="product-card" data-id="6" data-name="Neckchain" data-price="2999" data-image="img/product/chain nec1.jpeg">
+            <div class="image-container">
+               <a href="product18.html">
+                  <!-- Link to the product detail page -->
+                  <img src="img/product/chain nec1.jpeg" alt="Image 1" class="product-image active">
+                  <img src="img/product/chian nec2.jpeg" alt="Image 2" class="product-image">
+                  <img src="img/product/chain nec3.jpeg" alt="Image 3" class="product-image">
+               </a>
+            </div>
+            <div class="product-info">
+               <button class="wishlist-btn">&#10084;</button>
+            </div>
+            <div class="rating">
+               <span>4.3 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+               <span class="current-price">₹2,999</span>
+               <span class="original-price">₹3,399</span>
+            </div>
+            <div class="product-name">Neckchain</div>
+            <div class="btn">
+               <button class="add-to-cart">Add to Cart</button>
+               <button class="buy-now">Buy Now</button>
+            </div>
+         </div>
+         <!-- Product 3: Gold Ring -->
+         <div class="product-card" data-id="7" data-name="Gold Ring" data-price="2999" data-image="img/product/gz1.jpeg">
+            <div class="image-container">
+               <a href="product19.html">
+                  <!-- Link to the product detail page -->
+                  <img src="img/product/gz1.jpeg" alt="Image 1" class="product-image active">
+                  <img src="img/product/gz2.jpeg" alt="Image 2" class="product-image">
+                  <img src="img/product/gz3.jpeg" alt="Image 3" class="product-image">
+               </a>
+            </div>
+            <div class="product-info">
+               <button class="wishlist-btn">&#10084;</button>
+            </div>
+            <div class="rating">
+               <span>4.3 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+               <span class="current-price">₹2,999</span>
+               <span class="original-price">₹3,399</span>
+            </div>
+            <div class="product-name">Gold Ring</div>
+            <div class="btn">
+               <button class="add-to-cart">Add to Cart</button>
+               <button class="buy-now">Buy Now</button>
+            </div>
+         </div>
+         <!-- Product 4: Golden Bracelet -->
+         <div class="product-card" data-id="8" data-name="Golden Bracelet" data-price="2999" data-image="img/product/gb1.jpeg">
+            <div class="image-container">
+               <a href="product20.html">
+                  <!-- Link to the product detail page -->
+                  <img src="img/product/gb1.jpeg" alt="Image 1" class="product-image active">
+                  <img src="img/product/gb2.jpeg" alt="Image 2" class="product-image">
+                  <img src="img/product/gb3.jpeg" alt="Image 3" class="product-image">
+               </a>
+            </div>
+            <div class="product-info">
+               <button class="wishlist-btn">&#10084;</button>
+            </div>
+            <div class="rating">
+               <span>4.3 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+               <span class="current-price">₹2,999</span>
+               <span class="original-price">₹3,399</span>
+            </div>
+            <div class="product-name"> Golden bracelet</div>
+            <div class="btn">
+               <button class="add-to-cart">Add to Cart</button>
+               <button class="buy-now">Buy Now</button>
+            </div>
+         </div>
+      </section>
+      <h1>Girls Accessories</h1>
+      <section>
+         <div id="product" class="product-container">
+         <!-- Product 5: Bracelet -->
+         <div class="product-card" data-id="9" data-name="Bracelet" data-price="2999" data-image="img/product/hbrac1.jpg">
+            <div class="image-container">
+               <a href="product21.html">
+                  <!-- Link to the product detail page -->
+                  <img src="img/product/hbrac1.jpg" alt="Image 1" class="product-image active">
+                  <img src="img/product/vbrac1.jpg" alt="Image 2" class="product-image">
+                  <img src="img/product/mbrac1.jpg" alt="Image 3" class="product-image">
+               </a>
+            </div>
+            <div class="product-info">
+               <button class="wishlist-btn">&#10084;</button>
+            </div>
+            <div class="rating">
+               <span>4.3 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+               <span class="current-price">₹2,999</span>
+               <span class="original-price">₹3,399</span>
+            </div>
+            <div class="product-name">Bracelet</div>
+            <div class="btn">
+               <button class="add-to-cart">Add to Cart</button>
+               <button class="buy-now">Buy Now</button>
+            </div>
+         </div>
+         <!-- Product 6: Necklace -->
+         <div class="product-card" data-id="10" data-name="Necklace" data-price="2999" data-image="img/product/1hnc.jpg">
+            <div class="image-container">
+               <a href="product22.html">
+                  <!-- Link to the product detail page -->
+                  <img src="img/product/1hnc.jpg" alt="Image 1" class="product-image active">
+                  <img src="img/product/1vnc.jpg" alt="Image 2" class="product-image">
+                  <img src="img/product/1mnc.jpg" alt="Image 3" class="product-image">
+               </a>
+            </div>
+            <div class="product-info">
+               <button class="wishlist-btn">&#10084;</button>
+            </div>
+            <div class="rating">
+               <span>4.3 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+               <span class="current-price">₹2,999</span>
+               <span class="original-price">₹3,399</span>
+            </div>
+            <div class="product-name">Necklace</div>
+            <div class="btn">
+               <button class="add-to-cart">Add to Cart</button>
+               <button class="buy-now">Buy Now</button>
+            </div>
+         </div>
+         <!-- Product 7: Ring -->
+         <div class="product-card" data-id="11" data-name="Ring" data-price="2999" data-image="img/product/hring.jpg">
+            <div class="image-container">
+               <a href="product23.html">
+                  <!-- Link to the product detail page -->
+                  <img src="img/product/hring.jpg" alt="Image 1" class="product-image active" id="main-image">
+                  <img src="img/product/vring.jpg" alt="Image 2" class="product-image" onclick="changeImage('img/product/vring.jpg')">
+                  <img src="img/product/mring.jpg" alt="Image 3" class="product-image" onclick="changeImage('img/product/mring.jpg')">
+               </a>
+            </div>
+            <div class="product-info">
+               <button class="wishlist-btn">&#10084;</button>
+            </div>
+            <div class="rating">
+               <span>4.3 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+               <span class="current-price">₹2,999</span>
+               <span class="original-price">₹3,399</span>
+            </div>
+            <div class="product-name">Ring</div>
+            <div class="btn">
+               <button class="add-to-cart">Add to Cart</button>
+               <button class="buy-now">Buy Now</button>
+            </div>
+         </div>
+         <!-- Product 8: Ear Ring -->
+         <div class="product-card" data-id="12" data-name="Ear Ring" data-price="2999" data-image="img/product/earhring1.jpg">
+            <div class="image-container">
+               <a href="product24.html">
+                  <!-- Link to the product detail page -->
+                  <img src="img/product/earhring1.jpg" alt="Image 1" class="product-image active" id="main-image">
+                  <img src="img/product/earvring1.jpg" alt="Image 2" class="product-image" onclick="changeImage('img/product/earvring1.jpg')">
+                  <img src="img/product/mearing1.jpg" alt="Image 3" class="product-image" onclick="changeImage('img/product/mearing1.jpg')">
+               </a>
+            </div>
+            <div class="product-info">
+               <button class="wishlist-btn">&#10084;</button>
+            </div>
+            <div class="rating">
+               <span>4.3 ★</span> <span>| 43</span>
+            </div>
+            <div class="price">
+               <span class="current-price">₹2,999</span>
+               <span class="original-price">₹3,399</span>
+            </div>
+            <div class="product-name">Ear Ring</div>
+            <div class="btn">
+               <button class="add-to-cart">Add to Cart</button>
+               <button class="buy-now">Buy Now</button>
+            </div>
+         </div>
+      </section>
+      <footer class="footer">
+         <div class="footer-container">
+            <div class="footer-col">
+               <h4>Contact Us</h4>
+               <ul>
+                  <li><a href="theories/about.html">About Us</a></li>
+                  <li><a href="mailto:om64312@gmail.com">om64312@gmail.com</a></li>
+                  <li><a href="theories/info.html">Info</a></li>
+               </ul>
+            </div>
+            <div class="footer-col">
+               <h4>Consumer Policy</h4>
+               <ul>
+                  <li><a href="theories/terms of service.html">Terms of Services</a></li>
+                  <li><a href="theories/privacy.html">Privacy</a></li>
+               </ul>
+            </div>
+            <div class="footer-col">
+               <h4>Keep in touch with Us</h4>
+               <ul class="fa-ul">
+                  <li><a href="https://x.com/Soni13062004?t=M0_6NmR6ZCFP9s_RLxrP6A&s=09">
+                     <i class="fab fa-twitter"></i></a>
+                  </li>
+                  <li><a href="https://www.linkedin.com/in/om-soni-6425262a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+                     <i class="fab fa-linkedin"></i></a>
+                  </li>
+                  <li><a href="https://wa.me/+919313812189?text=Hello%2C%20I%27d%20like%20to%20chat%20with%20you!" class="contact-option whatsapp-link" target="_blank" >
+                     <i class="fab fa-whatsapp"></i> </a>
+                  </li>
+               </ul>
+            </div>
+            <div class="footer-col">
+               <h4>Let Us Help You</h4>
+               <ul>
+                  <li><a href="theories/hecu.html">Help & Customer Service</a></li>
+                  <li><a href="theories/return and refund.html">Returns & Refunds</a></li>
+                  <li><a href="theories/shipdel.html">Shipping & Delivery</a></li>
+               </ul>
+            </div>
+            <div class="footer-col">
+               <h4>More from Magic</h4>
+               <ul>
+                  <li><a href="handbags">Magic Handbags</a></li>
+                  <li><a href="jewellery">Magic Jewellery</a></li>
+                  <li><a href="sunglasses">Magic Sunlasses</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="footer-bottom">
+            &copy; 2025 Magic. All rights reserved.
+         </div>
+      </footer>
+      <script>
+         function showNotification(message) {
+         let notification = document.getElementById("notification");
+         notification.textContent=message;
+         
+         notification.classList.remove("hidden");
+         
+         clearTimeout(notification.timer);
+         notification.timer = setTimeout(() => {
+          notification.classList.add("hidden");
+         }, 2500); // Extended duration for better visibility
+         }
+           document.querySelectorAll(".add-to-cart").forEach(button => {
+         button.addEventListener("click", async (e) => {
+         
+         const card = e.target.closest(".product-card");
+         
+         const item = {
+          name: card.dataset.name,
+          price: Number(card.dataset.price),
+          image: card.dataset.image,
+          quantity: 1 // Default quantity
+         };
+         
+         const res = await fetch("/add-to-cart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+         });
+         
+         const result = await res.json();
+         updateCartCount();
+         showNotification(result.message);
+         
+         });
+         });
+         async function updateCartCount() {
+         const res = await fetch("/get-cart");
+         const data = await res.json();
+         
+         let totalCount = 0;
+         if (Array.isArray(data?.cart)) {
+         totalCount = data.cart.reduce((sum, item) => {
+         const qty = Number(item.quantity);
+         return sum + (isNaN(qty) ? 0 : qty);
+         }, 0);
+         }
+         
+         document.getElementById("cart-count").textContent = totalCount;
+         }
+         document.querySelectorAll(".buy-now").forEach(button => {
+         button.addEventListener("click", async (e) => {
+         const card = e.target.closest(".product-card");
+         
+         const item = {
+         name: card.dataset.name,
+         price: Number(card.dataset.price),
+         image: card.dataset.image,
+         quantity: 1 // Default quantity
+         };
+         
+         try {
+         const res = await fetch("/add-to-cart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include", // important if using sessions
+          body: JSON.stringify(item)
+         });
+         
+         const result = await res.json();
+         
+         if (res.ok) {
+          updateCartCount();
+          showNotification(result.message);
+          // ✅ Redirect to checkout page
+          window.location.href = "/checkout";
+         } else {
+          showNotification("❌ " + result.message);
+         }
+         } catch (err) {
+         console.error("Add to cart failed:", err);
+         showNotification("❌ Something went wrong.");
+         }
+         });
+         });
+         document.addEventListener("DOMContentLoaded", function () {
+         updateCartCount();
+         //             let cart = JSON.parse(localStorage.getItem("cart")) || [];
+         //             console.log(cart);
+         //             updateCartCount();
+         
+         //             document.querySelectorAll(".add-to-cart").forEach(button => {
+         //                 button.addEventListener("click", function () {
+         //                     let productCard = this.closest(".product-card");
+         //                     let productId = productCard.getAttribute("data-id");
+         //                     let productName = productCard.getAttribute("data-name");
+         //                     let productPrice = parseFloat(productCard.getAttribute("data-price"));
+         //                     let productImage = productCard.getAttribute("data-image");
+         
+         //                     let existingProduct = cart.find(item => item.id === productId);
+         
+         //                     const cartproduct = {
+         //                             id: productId,
+         //                             name: productName,
+         //                             price: productPrice,
+         //                             image: productImage,
+         //                             quantity: 1
+         //                         };
+         
+         //                         console.log(cartproduct)
+         //                         const response = fetch('http://localhost:3000/add-to-cart',
+         //                 {
+         //                     method: 'POST',
+         //                     headers: { 'Content-Type': 'application/json' },
+         //                     body: JSON.stringify(cartproduct),
+                      
+         //                 });
+         //                 console.log(response)
+         //                     if (existingProduct) {
+         //                         existingProduct.quantity++;
+         //                     } else {
+         //                         cart.push(cartproduct);
+         //                     }
+         
+         //                     localStorage.setItem("cart", JSON.stringify(cart));
+         //                     updateCartCount();
+         //                     showNotification();
+         //                     addToCart(cartproduct);
+         //                 });
+         //             });
+         
+         //             function updateCartCount() {
+         //                 let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+         //                 document.getElementById("cart-count").textContent = totalItems;
+         //             };
+         
+         //             async function addToCart({cartProductToAdd}){
+         //                 const addtocartResponse = await fetch('http://localhost:3000/add-to-cart',
+         //                 {
+         //                     method: 'POST',
+         //                     headers: { 'Content-Type': 'application/json' },
+         //                     body: cartProductToAdd
+                      
+         //                 }
+         
+         //                 );
+         
+         //                 console.log(addtocartResponse);
+              
+         
+         //             }
+         
+         //             function showNotification() {
+         //     let notification = document.getElementById("notification");
+         //     notification.classList.remove("hidden");
+         
+         //     clearTimeout(notification.timer);
+         //     notification.timer = setTimeout(() => {
+         //         notification.classList.add("hidden");
+         //     }, 2500); // Extended duration for better visibility
+         // }
+              document.getElementById("cart-icon").addEventListener("click", function () {
+                  window.location.href = "cart.html";
+              });
+          });
+         const badges = document.querySelectorAll(".badge");
+         
+         badges.forEach((badge) => {
+         badge.addEventListener("mouseover", () => {
+         badge.style.transform = "scale(1.1)";
+         });
+         badge.addEventListener("mouseout", () => {
+         badge.style.transform = "scale(1)";
+         });
+         });
+         function showProduct(productId) {
+         // Hide all product details
+         var productDetails = document.querySelectorAll('.product-detail');
+         productDetails.forEach(function(detail) {
+         detail.style.display = 'none';
+         });
+         
+         // Hide the thumbnails
+         document.querySelector('.product-container').style.display = 'none';
+         
+         // Show the selected product detail
+         document.getElementById(productId).style.display = 'block';
+         }
+         
+         function showThumbnails() {
+         // Hide all product details
+         var productDetails = document.querySelectorAll('.product-detail');
+         productDetails.forEach(function(detail) {
+         detail.style.display = 'none';
+         });
+         
+         // Show the thumbnails
+         document.querySelector('.product-container').style.display = 'flex';
+         }
+         //wishlist// 
+         document.addEventListener("DOMContentLoaded", function () {
+         const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+         const notificatio = document.getElementById("notificatio");
+         const wishlistIcon = document.getElementById("wishlist-icon");
+         const wishlistPopup = document.getElementById("wishlist-popup");
+         const closeWishlist = document.getElementById("close-wishlist");
+         const clearWishlistBtn = document.getElementById("clear-wishlist");
+         
+         if (!wishlistIcon || !wishlistPopup || !closeWishlist || !clearWishlistBtn || !notificatio) {
+          console.error("One or more required elements are missing.");
+          return;
+         }
+         
+         // Update wishlist count and buttons on page load
+         updateWishlistCount();
+         renderWishlist();
+         updateWishlistButtons();
+         
+         // Add event listeners to wishlist buttons
+         
+         document.querySelectorAll(".wishlist-btn").forEach(button => {
+         button.addEventListener("click", function () {
+         
+          const productCard = this.closest(".product-card");
+          const productId = productCard.getAttribute("data-id");
+          const productName = productCard.getAttribute("data-name");
+          const productImage = productCard.getAttribute("data-image");
+          const productPrice = productCard.getAttribute("data-price");
+         
+          const isActive = this.classList.contains("active");
+         
+          if (!isActive) {
+              // Add to wishlist (server)
+              fetch("/wishlist/add", {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({
+                       productId,
+                      name: productName,
+                      image: productImage,
+                      price: productPrice
+                  })
+              })
+              .then(res => res.json())
+              .then(data => {
+                  if (data.success) {
+                      this.classList.add("active");
+                      updateWishlistCount();
+                      showNotification("❤️ Added to Wishlist!", "pink");
+                  }
+              });
+          } else {
+              // Remove from wishlist (server)
+              fetch("/wishlist/remove", {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({
+                     
+                      productId
+                  })
+              })
+              .then(res => res.json())
+              .then(data => {
+                  if (data.success) {
+                      this.classList.remove("active");
+                      updateWishlistCount();
+                      showNotification("❌ Removed from Wishlist!", "red");
+                  }
+              });
+          }
+         });
+         });
+         
+         // Toggle wishlist popup
+         wishlistIcon.addEventListener("click", () => {
+          wishlistPopup.classList.toggle("show");
+          updateWishlistCount();
+          renderWishlist();
+         });
+         
+         // Close wishlist popup
+         closeWishlist.addEventListener("click", () => {
+          updateWishlistCount();
+          wishlistPopup.classList.remove("show");
+         });
+         
+         
+         
+         // Clear all wishlist items
+         clearWishlistBtn.addEventListener("click", async () => {
+         try {
+          const response = await fetch("/wishlist/clear", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+                  // Add CSRF token here if needed
+              }
+          });
+         
+          const data = await response.json();
+         
+          if (data.success) {
+              wishlist.length = 0; // Clear local wishlist array
+              localStorage.setItem("wishlist", JSON.stringify(wishlist)); // Update localStorage
+              updateWishlistCount(); // Update wishlist count
+              renderWishlist(); // Refresh the wishlist UI
+              updateWishlistButtons(); // Reset wishlist buttons
+              showNotification("🗑️ Wishlist cleared!", "red");
+          } else {
+              showNotification("❌ Failed to clear wishlist", "red");
+          }
+         } catch (error) {
+          console.error("Error clearing wishlist:", error);
+          showNotification("❌ Server error while clearing wishlist", "red");
+         }
+         });
+         // // Update wishlist count
+         // function updateWishlistCount() {
+         //     const wishlistCount = document.getElementById("wishlist-count");
+         //     if (wishlistCount) {
+         //         wishlistCount.textContent = wishlist.length;
+         //     }
+         // }
+         
+         // // Render wishlist items
+         // function renderWishlist() {
+         //     const wishlistContainer = document.getElementById("wishlist-items");
+         //     if (wishlistContainer) {
+         //         wishlistContainer.innerHTML = wishlist.length === 0
+         //             ? "<p>Your wishlist is empty.</p>"
+         //             : wishlist.map(item => `
+         //                 <div class="wishlist-item">
+         //                     <img src="${item.image}" alt="${item.name}">
+         //                     <span>${item.name}</span>
+         //                     <span class="price">₹${item.price}</span>
+         //                 </div>
+         //             `).join("");
+         //     }
+         // }
+         
+         async function updateWishlistCount() {
+         try {
+          const res = await fetch(`/wishlist/list`);
+          const data = await res.json();
+         
+          const wishlistCount = document.getElementById("wishlist-count");
+          if (wishlistCount) {
+              wishlistCount.textContent = data.length;
+          }
+         } catch (error) {
+          console.error("Error updating wishlist count:", error);
+         }
+         }
+         
+         async function renderWishlist() {
+         try {
+          const res = await fetch(`/wishlist/list`);
+          const data = await res.json();
+          console.log(data);
+         
+          const wishlistContainer = document.getElementById("wishlist-items");
+          if (wishlistContainer) {
+              wishlistContainer.innerHTML = data.length === 0
+                  ? "<p>Your wishlist is empty.</p>"
+                  : data.map(item => `
+                      <div class="wishlist-item">
+                          <img src="${item.image}" alt="${item.name}">
+                          <span>${item.name}</span>
+                          <span class="price">₹${item.price}</span>
+                      </div>
+                  `).join("");
+          }
+         
+          // ⭐ Now add "active" class to buttons if they are wishlisted
+          const productIds = data.map(item => item.productId); // create array of product IDs in wishlist
+          document.querySelectorAll(".wishlist-btn").forEach(button => {
+              const productCard = button.closest(".product-card");
+              const productId = productCard?.getAttribute("data-id");
+         
+              if (productIds.includes(productId)) {
+                  button.classList.add("active");
+              } else {
+                  button.classList.remove("active"); // optional: remove if not wishlisted
+              }
+          });
+         
+         } catch (error) {
+          console.error("Error rendering wishlist:", error);
+         }
+         }
+         // Show notification
+         function showNotification(message, color) {
+          notificatio.textContent = message;
+          notificatio.style.backgroundColor = color;
+          notificatio.classList.add("show");
+          setTimeout(() => notificatio.classList.remove("show"), 2000);
+         }
+         
+         // Update wishlist buttons
+         function updateWishlistButtons() {
+          document.querySelectorAll(".wishlist-btn").forEach(button => {
+              const productId = button.closest(".product-card").getAttribute("data-id");
+              if (wishlist.some(item => item.id === productId)) {
+                  button.classList.add("active");
+              } else {
+                  button.classList.remove("active");
+              }
+          });
+         }
+         });
+         function showProduct(productId) {
+         // Hide all product details
+         var productDetails = document.querySelectorAll('.product-detail');
+         productDetails.forEach(function(detail) {
+         detail.style.display = 'none';
+         });
+         
+         // Hide the thumbnails
+         document.querySelector('.product-container').style.display = 'none';
+         
+         // Show the selected product detail
+         document.getElementById(productId).style.display = 'block';
+         }
+         
+         function showThumbnails() {
+         // Hide all product details
+         var productDetails = document.querySelectorAll('.product-detail');
+         productDetails.forEach(function(detail) {
+         detail.style.display = 'none';
+         });
+         
+         // Show the thumbnails
+         document.querySelector('.product-container').style.display = 'flex';
+         }
+         function openSidebar() {
+              document.getElementById("sidebar").style.left = "0";
+          }
+         
+          function closeSidebar() {
+              document.getElementById("sidebar").style.left = "-250px";
+          }
+         //         const placeholderTexts = ["Search for Handbags", "Search for Perfumes", "Search for Sunglasses","Search for Jewellery",];
+         // let placeholderIndex = 0;
+         // let charIndex = 0;
+         // let typingSpeed = 100;
+         // let erasingSpeed = 50;
+         // let delayBetweenTexts = 1500;
+         // const searchInput = document.getElementById("product-search");
+         
+         // function typePlaceholder() {
+         //     if (charIndex < placeholderTexts[placeholderIndex].length) {
+         //         searchInput.setAttribute("placeholder", placeholderTexts[placeholderIndex].substring(0, charIndex + 1));
+         //         charIndex++;
+         //         setTimeout(typePlaceholder, typingSpeed);
+         //     } else {
+         //         setTimeout(erasePlaceholder, delayBetweenTexts);
+         //     }
+         // }
+         
+         // function erasePlaceholder() {
+         //     if (charIndex > 0) {
+         //         searchInput.setAttribute("placeholder", placeholderTexts[placeholderIndex].substring(0, charIndex - 1));
+         //         charIndex--;
+         //         setTimeout(erasePlaceholder, erasingSpeed);
+         //     } else {
+         //         placeholderIndex = (placeholderIndex + 1) % placeholderTexts.length;
+         //         setTimeout(typePlaceholder, typingSpeed);
+         //     }
+         // }
+         
+         // document.addEventListener("DOMContentLoaded", () => {
+         //     setTimeout(typePlaceholder, 500);
+         // });
+         
+         const placeholderTexts = [
+         "Search for Handbags", 
+         "Search for Perfumes", 
+         "Search for Sunglasses",
+         "Search for Jewellery",
+         ];
+         let placeholderIndex = 0;
+         let charIndex = 0;
+         let typingSpeed = 100;
+         let erasingSpeed = 50;
+         let delayBetweenTexts = 1500;
+         const searchInput = document.getElementById("product-search");
+         
+         function typePlaceholder() {
+         if (charIndex < placeholderTexts[placeholderIndex].length) {
+          searchInput.setAttribute("placeholder", placeholderTexts[placeholderIndex].substring(0, charIndex + 1));
+          charIndex++;
+          setTimeout(typePlaceholder, typingSpeed);
+         } else {
+          setTimeout(erasePlaceholder, delayBetweenTexts);
+         }
+         }
+         
+         function erasePlaceholder() {
+         if (charIndex > 0) {
+          searchInput.setAttribute("placeholder", placeholderTexts[placeholderIndex].substring(0, charIndex - 1));
+          charIndex--;
+          setTimeout(erasePlaceholder, erasingSpeed);
+         } else {
+          placeholderIndex++;
+          if (placeholderIndex >= placeholderTexts.length) placeholderIndex = 0;
+          setTimeout(typePlaceholder, typingSpeed);
+         }
+         }
+         
+         document.addEventListener("DOMContentLoaded", function() {
+         if (placeholderTexts.length) setTimeout(typePlaceholder, delayBetweenTexts);
+         });
+         
+         // Products array
+         const products = [
+         "Goggles",
+         "Bracelet",
+         "Sunglass Epic",
+         "Necklace",
+         "Chain Bracelet",
+         "Neckchain",
+         "Gold Ring",
+         "Golden Bracelet",
+         "Ring",
+         "Ear Ring",
+         "Handbag Brown",
+         "Handbag Black",
+         "Handbag Greycraft",
+         "Handbag",
+         "Sunglass thinx",
+         "Glasses",
+         "ENVY",
+         "Denver",
+         "Wild Stone",
+         "Fogg"
+         ];
+         
+         
+         const productList = document.getElementById("product-list");
+         
+         function displayProducts(filteredProducts) {
+         productList.innerHTML = "";
+         
+         if (filteredProducts.length === 0) {
+          productList.innerHTML = "<li style='padding: 10px;'>No products found</li>";
+          productList.style.display = "flex";
+          return;
+         }
+         
+         filteredProducts.forEach(product => {
+         const li = document.createElement("li");
+         li.textContent = product;
+         li.style.padding = "10px 15px";
+         li.style.cursor = "pointer";
+         li.style.borderBottom = "1px solid #eee";
+         
+         li.addEventListener('mouseover', () => li.style.backgroundColor = "#f0f0f0");
+         li.addEventListener('mouseout', () => li.style.backgroundColor = "white");
+         
+         // Add click event to redirect to the search page with the selected product
+         li.addEventListener('click', () => {
+          // Redirect to the search page with the clicked product as query
+          window.location.href = `/search-page?q=${encodeURIComponent(product)}`;
+         });
+         
+         productList.appendChild(li);
+         });
+         
+         
+         productList.style.display = "flex"; // show the list
+         }
+         const searchIcon = document.querySelector(".search-icon");
+         
+         // Add click event listener to search icon
+         searchIcon.addEventListener("click", () => {
+         const query = searchInput.value.trim();
+         
+         if (query) {
+          // Redirect to search page with query as a parameter
+          window.location.href = `/search-page?q=${encodeURIComponent(query)}`;
+         } else {
+          // Optionally, you can show a notification or alert if the search field is empty
+          showNotification("Please enter a search term", "red");
+         }
+         });
+         
+         function filterProducts() {
+         const searchTerm = searchInput.value.toLowerCase();
+         if (searchTerm.trim() === "") {
+          productList.style.display = "none"; // hide list when input is empty
+          return;
+         }
+         
+         const filtered = products.filter(product => product.toLowerCase().includes(searchTerm));
+         displayProducts(filtered);
+         }
+         
+         // Hide product list when clicking outside
+         document.addEventListener('click', function(event) {
+         if (!event.target.closest('.search-bar')) {
+          productList.style.display = 'none';
+         }
+         });
+         
+         
+         
+         
+         
+      </script>
+   </body>
+</html>

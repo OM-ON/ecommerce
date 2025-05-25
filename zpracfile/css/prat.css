@@ -1,0 +1,305 @@
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 80px;
+  background-color: #DAB6A5;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.069);
+  z-index: 999;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+max-width: 100%f;
+  background-color: #DAB6A5;
+
+}
+
+#navbar li {
+  list-style: none;
+  padding: 0 20px;
+  position: relative;
+}
+
+#navbar li a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+  color: #088178;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after {
+  content: '';
+  width: 60%;
+  height: 2px;
+  background: #088178;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+}
+
+#mobile {
+  display: none;
+  align-items: center;
+}
+
+:only-of-type  #close {
+  display: none;
+}
+/* footer */
+img {
+  max-width: 100%;
+  height: auto;
+}
+      section {
+          padding: 60px 0;
+         /* min-height: 100vh; */
+      }
+ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+      }
+.contact-area {
+  border-bottom: 1px solid #353C46;
+}
+
+.contact-content p {
+  font-size: 15px;
+  margin: 30px 0 60px;
+  position: relative;
+}
+
+.contact-content p::after {
+  background: #353C46;
+  bottom: -30px;
+  content: "";
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%);
+  width: 80%;
+}
+
+.contact-content h6 {
+  color: #8b9199;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.contact-content span {
+  color: #353c47;
+  margin: 0 10px;
+}
+
+.contact-social {
+  margin-top: 30px;
+}
+
+.contact-social > ul {
+  display: inline-flex;
+}
+
+.contact-social ul li a {
+  border: 1px solid #8b9199;
+  color: #8b9199;
+  display: inline-block;
+  height: 40px;
+  margin: 0 10px;
+  padding-top: 7px;
+  transition: all 0.4s ease 0s;
+  width: 40px;
+}
+
+.contact-social ul li a:hover {
+  border: 1px solid #FAB702;
+  color: #FAB702;
+}
+
+.contact-content img {
+  max-width: 210px;
+}
+
+section, footer {
+  background:#FEE5C3;
+  color: #868c96;
+  text-align: center;
+}
+
+footer p {
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer img {
+  width: 44px;
+}
+.footer {
+  background-color: #FEE5C3;
+  color: black;
+  text-align: center;
+  padding: 40px 0;
+  font-family: Arial, sans-serif;
+}
+
+.footer h4 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #f39c12;
+  text-align: center;
+}
+
+.footer a {
+  color:black;
+  text-decoration: none;
+  text-align: center
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-top,
+.footer-middle,
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 200px;
+  margin: 0 10px;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  padding-top: 20px;
+text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-bottom ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.footer-bottom ul li {
+  margin: 0 10px;
+
+}
+
+/* Social Media Icons */
+.fa-ul {
+  display: flex;
+  padding: 0;
+}
+
+.fa-ul li {
+  margin: 0 10px;
+}
+
+.fa-ul li a {
+  font-size: 24px;
+  color: #151212c4;
+}
+
+.fa-ul li a:hover {
+  color: #020202cb;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* CSS */
+.product-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.product-image-slider {
+  width: 50%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.image-slider {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.image-slider img {
+  width: 200px; /* adjust the width according to your needs */
+  height: 200px; /* adjust the height according to your needs */
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.image-slider img:hover {
+  border-color: #aaa;
+}
+
+.product-details {
+  width: 40%;
+  padding: 20px;
+}
+
+.product-details h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  margin-bottom: 20px;
+}
+
+.product-details button {
+  background-color: #3b0517;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.product-details button:hover {
+  background-color: #444;
+}
+
+

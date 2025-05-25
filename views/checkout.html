@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+      }
+
+      .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        height: 80px;
+        background-color: #fff;
+        border-bottom: 2px solid #ddd;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-logo img {
+        height: 50px;
+      }
+
+      .back-btn {
+        display: flex;
+        align-items: center;
+        background: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s;
+      }
+
+      .back-btn:hover {
+        background: #0056b3;
+      }
+
+      .back-btn i {
+        margin-right: 8px;
+      }
+
+      .checkout-container {
+        max-width: 700px;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="number"] {
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .order-summary {
+        margin-top: 20px;
+        border-top: 1px solid #ddd;
+        padding-top: 20px;
+      }
+
+      .order-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .total {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .place-order-btn {
+        width: 100%;
+        background: #28a745;
+        color: white;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+
+      .place-order-btn:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <div class="nav-logo">
+        <img src="img/product/newlogo.png" alt="MAGIC" />
+      </div>
+      <a href="/cart.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Cart
+      </a>
+    </nav>
+
+    <div class="checkout-container">
+      <h2>Checkout</h2>
+
+      <form id="checkout-form">
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" required />
+        </div>
+        <div class="form-group">
+          <label for="zipcode">Zip Code</label>
+          <input type="text" id="zipcode" required />
+        </div>
+      </form>
+
+      <div class="order-summary" id="order-summary">
+        <h3>Order Summary</h3>
+        <div id="summary-items"></div>
+        <p class="total">Total: ₹<span id="order-total">0.00</span></p>
+        <button class="place-order-btn" type="submit" form="checkout-form">
+          Place Order
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let cart = [];
+
+      async function fetchCart() {
+        try {
+          const res = await fetch("/get-cart", {
+            credentials: "include",
+          });
+          const data = await res.json();
+          cart = data.cart || [];
+          renderOrderSummary();
+        } catch (err) {
+          document.getElementById("summary-items").innerHTML =
+            "<p>Error loading cart.</p>";
+          console.error(err);
+        }
+      }
+
+      function renderOrderSummary() {
+        const container = document.getElementById("summary-items");
+        container.innerHTML = "";
+
+        let total = 0;
+
+        cart.forEach((item) => {
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "order-item";
+          itemDiv.innerHTML = `
+          <span>${item.name} x ${item.quantity}</span>
+          <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+        `;
+          container.appendChild(itemDiv);
+          total += item.price * item.quantity;
+        });
+
+        document.getElementById("order-total").textContent = total.toFixed(2);
+      }
+
+      document
+        .getElementById("checkout-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const orderData = {
+            fullname: document.getElementById("fullname").value,
+            email: document.getElementById("email").value,
+            address: document.getElementById("address").value,
+            zipcode: document.getElementById("zipcode").value,
+            cart,
+          };
+
+          try {
+            const res = await fetch("/checkout", {
+              method: "POST",
+              credentials: "include",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(orderData),
+            });
+
+            const result = await res.json();
+            if (res.ok) {
+              alert("✅ Order placed successfully!");
+              const orderId = result.order_id; // <- make sure this is returned from backend
+
+              window.location.href = `/order-confirmation?order_id=${orderId}`; // ✅ Pass order ID here
+            } else {
+              alert("❌ Error placing order.");
+            }
+          } catch (err) {
+            console.error("Error placing order:", err);
+            alert("❌ Failed to place order.");
+          }
+        });
+
+      document.addEventListener("DOMContentLoaded", fetchCart);
+    </script>
+  </body>
+</html>

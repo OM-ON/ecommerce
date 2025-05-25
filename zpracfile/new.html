@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="css/index.css">
+    <title>product detail / home</title>
+    <style>
+          /* footer */
+  img {
+    max-width: 100%;
+    height: auto;
+}
+  section {
+            padding: 60px 0;
+           /* min-height: 100vh; */
+        }
+ ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+.contact-area {
+    border-bottom: 1px solid #353C46;
+}
+
+.contact-content p {
+    font-size: 15px;
+    margin: 30px 0 60px;
+    position: relative;
+}
+
+.contact-content p::after {
+    background: #353C46;
+    bottom: -30px;
+    content: "";
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%);
+    width: 80%;
+}
+
+.contact-content h6 {
+    color: #8b9199;
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.contact-content span {
+    color: #353c47;
+    margin: 0 10px;
+}
+
+.contact-social {
+    margin-top: 30px;
+}
+
+.contact-social > ul {
+    display: inline-flex;
+}
+
+.contact-social ul li a {
+    border: 1px solid #8b9199;
+    color: #8b9199;
+    display: inline-block;
+    height: 40px;
+    margin: 0 10px;
+    padding-top: 7px;
+    transition: all 0.4s ease 0s;
+    width: 40px;
+}
+
+.contact-social ul li a:hover {
+    border: 1px solid #FAB702;
+    color: #FAB702;
+}
+
+.contact-content img {
+    max-width: 210px;
+}
+
+section, footer {
+    background:#FEE5C3;
+    color: #868c96;
+    text-align: center;
+}
+
+footer p {
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer img {
+    width: 44px;
+}
+
+
+/* footer */
+/* Footer Styles */
+.footer {
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 0;
+    margin-top: auto;
+    background-color: #f8f8f8;
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="none" stroke="%23e8e8e8" stroke-width="1"><path d="M0 50 L50 0 L100 50 L50 100 Z"/><path d="M50 0 L100 50 L50 100 L0 50 Z"/></g></svg>');
+    background-size: 100px 100px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+/* Footer Container */
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Footer Headings */
+.footer h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #f39c12;
+}
+
+
+.footer a {
+  color:black;
+  text-decoration: none;
+  text-align: center
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-top,
+.footer-middle {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+
+/* Footer Columns */
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+.footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+/* Social Media Icons */
+.fa-ul {
+  display: flex;
+  padding: 0;
+}
+
+.fa-ul li {
+  margin: 0 10px;
+}
+
+.fa-ul li a {
+  font-size: 24px;
+  color: #151212c4;
+}
+
+.fa-ul li a:hover {
+  color: #020202cb;
+}
+/* Product Container */
+.product-contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    padding: 50px 20px; /* Reduce padding */
+    gap: 40px;
+    background-color: rgb(255, 255, 255);
+    max-width: 1200px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+
+/* Product Gallery */
+.product-gallery {
+    flex: 1;
+    text-align: center;
+    /* background-color: #f7f7f7; */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#main-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    transition: 0.3s ease-in-out;
+}
+
+.thumbnail:hover {
+    border: 2px solid #ff3f6c;
+    transform: scale(1.1);
+}
+
+/* Product Info */
+.product-info {
+    flex: 1;
+    max-width: 500px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff3f6c;
+}
+
+.mrp {
+    text-decoration: line-through;
+    color: gray;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.rating {
+    font-size: 16px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.rating i {
+    color: gold;
+}
+
+/* .desc {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin-top: 10px;
+} */
+
+/* Features */
+.product-features {
+    font-size: 14px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.product-features li {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.product-features i {
+    color: #28a745;
+}
+
+/* Delivery Check */
+.delivery-check {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.delivery-check input {
+    padding: 10px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.delivery-check button {
+    padding: 10px 15px;
+    background-color: #ff3f6c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.delivery-check button:hover {
+    background-color: #d62b52;
+}
+
+/* Action Buttons */
+/* Buttons Container */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Add to Cart Button */
+.add-to-cart {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #e66e89;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.add-to-cart:hover {
+    background-color: #d45973;
+}
+
+/* ----------PRODUCT PAGE DESIGN----------  */
+
+/* productcard */
+.product-card {
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color:white;
+    box-shadow: 0 2px 10px rgba(160, 71, 71, 0.1);
+    color:#B8860B;
+    position: relative;
+  }
+  .image-container {
+    position: relative;
+    height: 250px;              
+    overflow: hidden;
+  }
+  .product-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+  }
+  
+  .product-image:nth-child(1) {
+    opacity: 1;
+    z-index: 3;
+  }
+  
+  .image-container:hover .product-image {
+    opacity: 0;
+  }
+  
+  .image-container:hover .product-image:nth-child(2) {
+    animation: fadeInOut 3s linear 0s infinite;
+    z-index: 2;
+  }
+  
+  .image-container:hover .product-image:nth-child(3) {
+    animation: fadeInOut 3s linear 1.5s infinite;
+    z-index: 1;
+  }
+  
+  @keyframes fadeInOut {
+    0%, 50%, 100% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+  }
+  .product-info {
+    padding: 15px;
+    text-align: center;
+    color:#B8860B
+}
+
+  
+  /* wishlist */
+.wishlist {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    fill: rgb(229, 236, 237); /* Default color */
+    transition: fill 0.3s; /* Smooth transition */
+  }
+  .wishlist.clicked {
+    fill: red; /* Color when clicked */
+  }
+  /* btn */
+/* Button Container */
+.buy-now {
+  background-color: white;
+  color: #DAB6A5; /* Soft pink color */
+  border: 2px solid #DAB6A5;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.buy-now:hover {
+  background-color: #f1ad8d;
+  color: white;
+}
+  .buy-now {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: bold;
+  background: linear-gradient(to right, #ffc6c6, #ffdede);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.buy-now:hover {
+  background: linear-gradient(to right, #ffb3b3, #ffcccc);
+}
+
+/* section */
+.section-product{
+    padding: 40px 80px;
+    display:flex;
+    flex-direction: row;
+    height: 500px;
+    text-align: center;
+    background-color: #FFE5D6;
+  }
+  
+    .section-p2{
+        padding: 40px 80px;
+        display:flex;
+       height: 500px;
+        text-align: center;
+        flex-direction: row;
+        background-color: #FFE5D6;
+      }
+      .section-p3{
+        padding: 40px 80px;
+        display:flex;
+        text-align: center;
+       height: 500px;
+        flex-direction: row;
+
+        background-color:#FFE5D6;
+      }
+      .section-p4{
+        padding: 40px 80px;
+        display:flex;
+        text-align: center;
+       
+        flex-direction: row;
+
+        background-color:#FFE5D6;
+      }
+      .section-p5{
+      padding: 40px 80px;
+      display:flex;
+      text-align: center;
+     height: 500px;
+      flex-direction: row;
+
+      background-color:#FFE5D6;
+    }
+
+    .section-p6{
+      padding: 40px 80px;
+      display:flex;
+      text-align: center;
+     height: 500px;
+      flex-direction: row;
+
+      background-color:#FFE5D6;
+    }
+
+    .section-p7{
+      padding: 40px 80px;
+      display:flex;
+      text-align: center;
+     height:500px;
+      flex-direction: row;
+ background-color:#FFE5D6;
+    }
+    .section-p8{
+      padding: 40px 80px;
+      display:flex;
+      text-align: center;
+     height:500px;
+      flex-direction: row;
+ background-color:#FFE5D6;
+    }
+    .section-p9{
+      padding: 40px 80px;
+      display:flex;
+      text-align: center;
+     height:500px;
+      flex-direction: row;
+ background-color:#FFE5D6;
+    }
+    .section-p10{
+      padding: 40px 80px;
+      display:flex;
+      text-align: center;
+     height:500px;
+      flex-direction: row;
+ background-color:#FFE5D6;
+    }
+    .section-p11{
+      padding: 40px 80px;
+      display:flex;
+      text-align: center;
+     height:500px;
+      flex-direction: row;
+ background-color:#FFE5D6;
+    }
+    .section-p12{
+      padding: 40px 80px;
+      display:flex;
+      text-align: center;
+     height:500px;
+      flex-direction: row;
+ background-color:#FFE5D6;
+    }
+
+    .section-p13{
+      padding: 40px 80px;
+      display:flex;
+      text-align: center;
+     height:500px;
+      flex-direction: row;
+ background-color:#FFE5D6;
+    }
+    h2{
+  text-align: center;
+  font-size: 42px;
+  line-height: 54px;
+  background-color: hsl(38, 77%, 73%);
+}
+#product{
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  flex-wrap: wrap;
+}
+/*  */
+
+.image-container {
+  text-align: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.image-container img {
+
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+/* Product Detail */
+.product-detail {
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: none; /* Initially hide all product details */
+}
+
+.product-detail img {
+  /* width: 100%; */
+  border-radius: 10px;
+  height: 100%;
+}
+
+.product-title {
+  font-size: 2em;
+  margin: 20px 0;
+}
+
+.product-price {
+  color: #e74c3c;
+  font-size: 1.5em;
+}
+
+.product-description {
+  margin: 20px 0;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.back-button {
+  display: block;
+  margin: 20px 0;
+  font-size: 1em;
+  color: #3498db;
+  cursor: pointer;
+}
+
+.product-thumbnails img {
+  width: 100px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.product-thumbnails {
+  text-align: center;
+}
+
+.rating {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.rating span {
+  margin-right: 5px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.current-price {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000; /* Black color */
+  margin-right: 8px;
+}
+
+.original-price {
+  font-size: 16px;
+  color: #888;
+  text-decoration: line-through;
+}
+
+.product-name {
+  font-size: 16px;
+  color: #666;
+  margin: 5px 0;
+}
+/* Product Container (Now Full Width) */
+.product-contain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            flex: 1;
+            text-align: center;
+        }
+
+        #main-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            transition: 0.3s ease-in-out;
+        }
+
+        .thumbnail:hover {
+            border: 2px solid #ff3f6c;
+            transform: scale(1.1);
+        }
+
+        /* Product Info */
+        .product-info {
+            flex: 1;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff3f6c;
+        }
+
+        .mrp {
+            text-decoration: line-through;
+            color: gray;
+            font-size: 18px;
+            margin-left: 5px;
+        }
+
+        .rating {
+            font-size: 16px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .rating i {
+            color: gold;
+        }
+
+        .desc {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        /* Features */
+        .product-features {
+            font-size: 14px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product-features li {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+.product-features i {
+    color: #28a745;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main content grows to push footer down */
+.main-content {
+    flex: 1;
+}
+.feature-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 600px;
+            justify-content: space-between;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 45%;
+        }
+
+        .feature img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .feature span {
+            font-size: 16px;
+            color: #333;
+        }
+        
+
+
+    </style>
+</head>
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-logo">
+      <img src="img/product/newlogo.png" alt="MAGIC" />
+    </div>
+    <div class="search-bar">
+      <input type="search" placeholder="Search..." />
+      <span class="search-icon">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+    <ul class="nav-categories">
+      <li><a class="active" href="fix.html">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="nav.html">Jewellery</a></li>
+      <li><a  href="handbag.html">Handbag</a></li>
+      <li><a href="sunglasses.html">Sunglass</a></li>
+      <li><a  href="perfume.html">Perfume</a></li>
+      <!-- <li><a href="deal.html">Deal</a></li> -->
+    </ul>
+    <div class="nav-account">
+      <a href="#"><i class="far far fa-heart"></i></a>
+      <a href="#"><i class="far fa-cart-plus"></i></a>
+    </div>
+  </nav>
+  <div class="wrapper">
+    <div class="main-content">
+
+<div class="product-contain">
+    <!-- Product Image Gallery -->
+    <div class="product-gallery">
+        <img id="main-image" src="img/product/wal1.jpg" alt="Product">
+        <div class="thumbnail-container">
+            <img class="thumbnail" src="img/product/wal2.jpg" onclick="changeImage(this)">
+        </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-info">
+        <h1> Vertical Bifold Wallet 
+        </h1>
+        <br>
+        <p class="price">
+            <strong style="font-size: 26px; color: #ff3f6c;">₹3,499</strong> 
+            <span class="mrp" style="font-size: 18px; color: gray; text-decoration: line-through; margin-left: 8px;">₹6,199</span>
+        </p>
+        
+        <p class="rating">
+            <span style="font-size: 18px; font-weight: bold;">4.7★</span>  
+            <span style="color: #555; font-size: 16px;"> | 33 Verified Reviews</span>
+        </p>
+        
+        <br>
+        <h3>About this item</h3>
+        <ul style="list-style: none; padding: 0; text-align: left; font-size: 16px; color: #333; line-height: 1.8;">
+            <li>💼 <strong>Premium Brand & Model:</strong> Christian Dior Vertical Bifold Wallet – Gravity Leather & Smooth Black.</li>
+            <li>👜 <strong>Luxury Craftsmanship:</strong> Made from exquisite <strong>smooth black calfskin</strong> with the iconic <em>Dior Oblique Jacquard motif</em>.</li>
+            <li>🎩 <strong>Timeless Elegance:</strong> Designed for those who appreciate both luxury and functionality, making it a refined statement piece.</li>
+            <li>📏 <strong>Compact & Stylish:</strong> Perfectly sized for everyday convenience while maintaining a sophisticated look.</li>
+           
+        </ul>
+        
+      
+      
+<br>      
+
+<div class="feature-container">
+    <div class="feature">
+        <img src="img/product/30-days-return.webp" alt="30 Day Return">
+        <span>Easy 30 Day Return</span>
+    </div>
+    <!-- <div class="feature">
+        <img src="img/icons/lifetime-plating.png" alt="Lifetime Plating">
+        <span>Lifetime Plating</span>
+    </div> -->
+    <div class="feature">
+        <img src="img/product/warranty.webp" alt="6 Month Warranty">
+        <span>6-Month Warranty</span>
+    </div>
+    <!-- <div class="feature">
+        <img src="img/icons/925-silver.png" alt="Fine 925 Silver">
+        <span>Fine 925 Silver</span>
+    </div> -->
+</div>
+  <br>
+  <br>
+  <div class="btn">
+    <button class="add-to-cart">Add to Cart</button>
+      <button class="buy-now">Buy Now</button>
+  </div>
+    </div>
+</div>
+<!--  -->
+<h2>Featured Product</h2>
+<section>
+  <div id="product" class="product-container">
+   
+<div class="product-card">
+    <div class="image-container">
+        <img src="img/product/of1.jpg" alt="Image 1" class="product-image active"onclick="showProduct('Gucci-GG0392O-eyeglasses')">
+        <img src="img/product/of2.jpg" alt="Image 2" class="product-image">
+        <img src="img/product/of3.jpg" alt="Image 3" class="product-image">
+    
+    </div>
+    <div class="product-info">
+        <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+    </div>
+    <div class="rating">
+        <span>4.3 ★</span> <span>| 43</span>
+    </div>
+    <div class="price">
+        <span class="current-price">₹2,999</span>
+        <span class="original-price">₹3,399</span>
+    </div>
+    <div class="product-name">
+   Goggles
+    </div>
+    <div class="btn">
+      <button class="add-to-cart">Add to Cart</button>
+        <button class="buy-now">Buy Now</button>
+    </div>
+</div> 
+
+<div class="product-card">
+    <div class="image-container">
+        <img src="img/product/hbrac2.jpg" alt="Image 1" class="product-image active"onclick="showProduct('diamond-eternity-band')">
+        <img src="img/product/vbrac2.jpg" alt="Image 2" class="product-image">
+        <img src="img/product/mbrac2.jpg" alt="Image 3" class="product-image">
+    </div>
+    <div class="product-info">
+        <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+    </div>
+    <div class="rating">
+        <span>4.2 ★</span> <span>| 43</span>
+    </div>
+    <div class="price">
+        <span class="current-price">₹4,999</span>
+        <span class="original-price">₹6,000</span>
+    </div>
+    <div class="product-name">
+        Bracelet
+    </div>
+    <div class="btn">
+      <button class="add-to-cart">Add to Cart</button>
+        <button class="buy-now">Buy Now</button>
+    </div>  
+</div>
+
+<div class="product-card">
+    <div class="image-container">
+        <img src="img/product/s1.jpg" alt="Image 1" class="product-image active"onclick="showProduct('Eclipse-Rectangular-Sunglasses')">
+        <img src="img/product/s2.jpg" alt="Image 2" class="product-image">
+        <img src="img/product/s3.jpg" alt="Image 3" class="product-image">
+    </div>
+    <div class="product-info">
+        <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+    </div>
+    <div class="rating">
+        <span>4.1 ★</span> <span>| 43</span>
+    </div>
+    <div class="price">
+        <span class="current-price">₹4,000</span>
+        <span class="original-price">₹7,000</span>
+    </div>
+    <div class="product-name">
+ Sunglasses
+    </div>
+    <div class="btn">
+      <button class="add-to-cart">Add to Cart</button>
+        <button class="buy-now">Buy Now</button>
+    </div>
+</div>
+
+<div class="product-card">
+    <div class="image-container">
+        <img src="img/product/2hnc.jpg" alt="Image 1" class="product-image active"onclick="showProduct('necklace')">
+        <img src="img/product/2vnc.jpg" alt="Image 2" class="product-image">
+        <img src="img/product/2mnc.jpg" alt="Image 3" class="product-image">
+    </div>
+    <div class="product-info">
+        <svg class="wishlist" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+    </div>
+    <div class="rating">
+        <span>4.8 ★</span> <span>| 43</span>
+    </div>
+    <div class="price">
+        <span class="current-price">₹4,999</span>
+        <span class="original-price">₹6,399</span>
+    </div>
+    <div class="product-name">
+        Necklace
+    </div>
+    <div class="btn">
+      <button class="add-to-cart">Add to Cart</button>
+      <button class="buy-now">Buy Now</button>
+       
+    </div>
+</div>
+</div>
+
+</section>
+<footer class="footer">
+<div class="footer-container">
+  <div class="footer-col">
+    <h4>Contact Us</h4>
+    <ul>
+      <li><a href="theories/about.html">About Us</a></li>
+      <li><a href="mailto:om64312@gmail.com">om64312@gmail.com</a></li>
+      <li><a href="tel:931812189">9313812189</a></li>
+      <li><a href="theories/info.html">Info</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Consumer Policy</h4>
+    <ul>
+      <li><a href="theories/terms of service.html">Terms of Services</a></li>
+      <li><a href="theories/privacy.html">Privacy</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Keep in touch with Us</h4>
+    <ul class="fa-ul">
+      <li><a href="https://x.com/Soni13062004?t=M0_6NmR6ZCFP9s_RLxrP6A&s=09">
+        <i class="fab fa-twitter"></i></a></li>
+      <li><a href="https://www.linkedin.com/in/om-soni-6425262a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+        <i class="fab fa-linkedin"></i></a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Let Us Help You</h4>
+    <ul>
+      <li><a href="theories/hecu.html">Help & Customer Service</a></li>
+      <li><a href="theories/return and refund.html">Returns & Refunds</a></li>
+      <li><a href="theories/shipdel.html">Shipping & Delivery</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>More from Magic</h4>
+    <ul>
+      <li><a href="handbag.html">Magic Handbags</a></li>
+      <li><a href="nav.html">Magic Jewellery</a></li>
+      <li><a href="sunglasses.html">Magic Sunlasses</a></li>
+    </ul>
+  </div>
+</div>
+<div class="footer-bottom">
+  &copy; 2025 Magic. All rights reserved.
+</div>
+</footer>
+</div>
+<script>
+// Store the original image when the page loads
+let originalImage = document.getElementById("main-image").src;
+
+document.querySelector(".thumbnail-container").addEventListener("click", function(event) {
+if (event.target.classList.contains("thumbnail")) {
+    let mainImage = document.getElementById("main-image");
+
+    // If the clicked image is already displayed, reset to the original image
+    if (mainImage.src === event.target.src) {
+        mainImage.src = originalImage;
+    } else {
+        mainImage.src = event.target.src;
+    }
+}
+});
+</script>
+</body>
+</html>
+
+
